@@ -13,7 +13,6 @@
 		04C892C62209D55F00A1FBA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C892C42209D55F00A1FBA6 /* LaunchScreen.storyboard */; };
 		04C892D02209D61800A1FBA6 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C892CE2209D61800A1FBA6 /* BrightFutures.framework */; };
 		04C892D12209D61800A1FBA6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C892CF2209D61800A1FBA6 /* Result.framework */; };
-		04C892DC2209D72D00A1FBA6 /* UIRefreshControl+CommonRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892D52209D72D00A1FBA6 /* UIRefreshControl+CommonRefresher.swift */; };
 		04C892DD2209D72D00A1FBA6 /* JSONEncoder+SnakeCaseEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892D72209D72D00A1FBA6 /* JSONEncoder+SnakeCaseEncoder.swift */; };
 		04C892DE2209D72D00A1FBA6 /* Error+NSErrorFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892D82209D72D00A1FBA6 /* Error+NSErrorFeatures.swift */; };
 		04C892DF2209D72D00A1FBA6 /* Encodable+PerformDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892D92209D72D00A1FBA6 /* Encodable+PerformDictionary.swift */; };
@@ -53,7 +52,6 @@
 		04C892C72209D55F00A1FBA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C892CE2209D61800A1FBA6 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		04C892CF2209D61800A1FBA6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		04C892D52209D72D00A1FBA6 /* UIRefreshControl+CommonRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+CommonRefresher.swift"; sourceTree = "<group>"; };
 		04C892D72209D72D00A1FBA6 /* JSONEncoder+SnakeCaseEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONEncoder+SnakeCaseEncoder.swift"; sourceTree = "<group>"; };
 		04C892D82209D72D00A1FBA6 /* Error+NSErrorFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error+NSErrorFeatures.swift"; sourceTree = "<group>"; };
 		04C892D92209D72D00A1FBA6 /* Encodable+PerformDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+PerformDictionary.swift"; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 		04C892D42209D72D00A1FBA6 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				04C892D52209D72D00A1FBA6 /* UIRefreshControl+CommonRefresher.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -159,10 +156,10 @@
 		04C892D62209D72D00A1FBA6 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				04C892D72209D72D00A1FBA6 /* JSONEncoder+SnakeCaseEncoder.swift */,
 				04C892D82209D72D00A1FBA6 /* Error+NSErrorFeatures.swift */,
-				04C892D92209D72D00A1FBA6 /* Encodable+PerformDictionary.swift */,
+				04C892D72209D72D00A1FBA6 /* JSONEncoder+SnakeCaseEncoder.swift */,
 				04C892DA2209D72D00A1FBA6 /* JSONDecoder+SnakeCaseDecoder.swift */,
+				04C892D92209D72D00A1FBA6 /* Encodable+PerformDictionary.swift */,
 				04C892DB2209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift */,
 			);
 			path = Foundation;
@@ -179,8 +176,8 @@
 		04C892E32209D74D00A1FBA6 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				04C892E42209D74D00A1FBA6 /* KeychainManager.swift */,
 				04C892E52209D74D00A1FBA6 /* KeychainConfiguration.swift */,
+				04C892E42209D74D00A1FBA6 /* KeychainManager.swift */,
 				04C892E62209D74D00A1FBA6 /* KeychainPasswordItem.swift */,
 			);
 			path = Keychain;
@@ -189,13 +186,13 @@
 		04C892EA2209D75600A1FBA6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				04C892EB2209D75600A1FBA6 /* RequestCreatable.swift */,
-				04C892EC2209D75600A1FBA6 /* Networking.swift */,
-				04C892ED2209D75600A1FBA6 /* URLConstructable.swift */,
-				04C892EF2209D75600A1FBA6 /* Server.swift */,
-				04C892F02209D75600A1FBA6 /* MyRequest.swift */,
 				04C892F12209D75600A1FBA6 /* HTTPMethod.swift */,
 				04C892F22209D75600A1FBA6 /* NetworkingErrors.swift */,
+				04C892EF2209D75600A1FBA6 /* Server.swift */,
+				04C892ED2209D75600A1FBA6 /* URLConstructable.swift */,
+				04C892EB2209D75600A1FBA6 /* RequestCreatable.swift */,
+				04C892F02209D75600A1FBA6 /* MyRequest.swift */,
+				04C892EC2209D75600A1FBA6 /* Networking.swift */,
 				04C892F32209D75600A1FBA6 /* Services */,
 			);
 			path = Networking;
@@ -214,9 +211,9 @@
 		04C892F42209D75600A1FBA6 /* Currencies */ = {
 			isa = PBXGroup;
 			children = (
+				04C892F72209D75600A1FBA6 /* CurrencyEndpoint.swift */,
 				04C892F52209D75600A1FBA6 /* CurrencyService.swift */,
 				04C892F62209D75600A1FBA6 /* CurrencyModel.swift */,
-				04C892F72209D75600A1FBA6 /* CurrencyEndpoint.swift */,
 			);
 			path = Currencies;
 			sourceTree = "<group>";
@@ -224,11 +221,11 @@
 		04C892F82209D75600A1FBA6 /* AireFresco */ = {
 			isa = PBXGroup;
 			children = (
-				04C892F92209D75600A1FBA6 /* AireFrescoTestService.swift */,
-				04C892FA2209D75600A1FBA6 /* SignUpBody.swift */,
-				04C892FB2209D75600A1FBA6 /* SignInBody.swift */,
-				04C892FC2209D75600A1FBA6 /* UserModel.swift */,
 				04C892FD2209D75600A1FBA6 /* AireFrescoTestEndpoint.swift */,
+				04C892F92209D75600A1FBA6 /* AireFrescoTestService.swift */,
+				04C892FB2209D75600A1FBA6 /* SignInBody.swift */,
+				04C892FA2209D75600A1FBA6 /* SignUpBody.swift */,
+				04C892FC2209D75600A1FBA6 /* UserModel.swift */,
 			);
 			path = AireFresco;
 			sourceTree = "<group>";
@@ -236,9 +233,9 @@
 		04C892FE2209D75600A1FBA6 /* AFWithQueries */ = {
 			isa = PBXGroup;
 			children = (
-				04C892FF2209D75600A1FBA6 /* PaymentPlansModel.swift */,
 				04C893002209D75600A1FBA6 /* AFWithQueriesEndpoint.swift */,
 				04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */,
+				04C892FF2209D75600A1FBA6 /* PaymentPlansModel.swift */,
 				04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */,
 			);
 			path = AFWithQueries;
@@ -364,7 +361,6 @@
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
-				04C892DC2209D72D00A1FBA6 /* UIRefreshControl+CommonRefresher.swift in Sources */,
 				04C893032209D75600A1FBA6 /* RequestCreatable.swift in Sources */,
 				04C892DE2209D72D00A1FBA6 /* Error+NSErrorFeatures.swift in Sources */,
 				04C892E92209D74D00A1FBA6 /* KeychainPasswordItem.swift in Sources */,
