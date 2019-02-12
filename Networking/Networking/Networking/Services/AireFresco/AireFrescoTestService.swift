@@ -25,4 +25,15 @@ class AireFrescoTestService: RequestPerformable {
                                       body: credentials)
         return performDataTask(with: signInRequest)
     }
+    
+    // Empty Response
+    func changePassword(with newPasswordBody: ChangePasswordBody) -> Future<EmptyResult, NetworkingError> {
+        
+        let changePasswordRequest = MyRequest(endpoint: AireFrescoEndpoint.changePassword,
+                                              body: newPasswordBody)
+        
+        return performDataTask(with: changePasswordRequest,
+                               logsEnable: true)
+    }
+    
 }

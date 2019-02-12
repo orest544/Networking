@@ -9,6 +9,14 @@
 import Foundation
 import BrightFutures
 
+struct EmptyType: Encodable {
+    
+}
+
+struct EmptyResult: Decodable {
+    
+}
+
 protocol RequestPerformable {
     var session: URLSession { get }
     var decoder: JSONDecoder { get }
@@ -17,6 +25,7 @@ protocol RequestPerformable {
                                               logsEnable: Bool) -> Future<ParsedType, NetworkingError>
 }
 
+// NOTE: -  MAYBE ADD ASSOTIATED VALUE TO A PROTOCOL
 extension RequestPerformable {
     
     // MARK: - Stuff
@@ -30,41 +39,51 @@ extension RequestPerformable {
     
     // MARK: - DataTask
     func performDataTask<ParsedType: Decodable>(with request: RequestCreatable,
-                                                logsEnable: Bool = true) -> Future<ParsedType, NetworkingError> {
+                                                logsEnable: Bool = false) -> Future<ParsedType, NetworkingError> {
         
         let promise = Promise<ParsedType, NetworkingError>()
         
         let dataTask = session.dataTask(with: request.asURLRequest()) { (data, response, error) in
-            if let error = error {
-                // TODO: Handle error
-                // -1001 timeout
-                // -1009 inet connection
-                print("\nNetworking ERROR: ", error, "\n")
-                return promise.failure(NetworkingError.defaultError)
+            
+            /// Handle Error
+            if let networkingError = self.handleError(error) {
+                return promise.failure(networkingError)
             }
             
+            /// Check data and response
             guard let data = data,
                 let response = response as? HTTPURLResponse else {
                     // TODO: Handle error
                     print("Smth goes wrong")
-                    return promise.failure(NetworkingError.defaultError)
+                    return promise.failure(NetworkingError.badData)
             }
             
-            ///----------------------------------------
-            // LOGs
+            /// LOGs
             if logsEnable {
                 self.printLogs(with: response,
                                parsedType: ParsedType.self,
                                data: data)
             }
-            ///----------------------------------------
             
+            ///
             guard response.isStatusCodeInOkRange else {
                     // TODO: Handle error
-                    print("Smth goes wrong")
-                    return promise.failure(NetworkingError.defaultError)
+                if let responseError = self.checkErrorInResponse(data: data) {
+                    return promise.failure(responseError)
+                }
+                
+                print("Smth goes wrong")
+                return promise.failure(NetworkingError.defaultError)
             }
             
+            /// Check if needed only true or false (if response have an empty JSON, and we need only checking status code)
+            guard "\(ParsedType.self)" != "EmptyResult" else {
+                
+                let emptyResult = self.getEmptyResult(parsedType: ParsedType.self)
+                return promise.success(emptyResult)
+            }
+            
+            ///
             do {
                 let parsedData = try self.decoder.decode(ParsedType.self, from: data)
                 promise.success(parsedData)
@@ -79,6 +98,31 @@ extension RequestPerformable {
         return promise.future
     }
     
+    // MARK: - Error handling
+    private func handleError(_ error: Error?) -> NetworkingError? {
+        guard let error = error else { return nil }
+            // TODO: Handle error
+            // -1001 timeout
+            // -1009 inet connection
+            print("\nNetworking ERROR: ", error, "\n")
+            return NetworkingError.defaultError
+    }
+    
+    private func checkErrorInResponse(data: Data) -> NetworkingError? {
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            if let error = json["error"] as? String {
+                return NetworkingError.responseError(error)
+            }
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+        
+        return nil
+    }
+    
     // MARK: - LOGs
     private func printLogs<ParsedType: Decodable>(with response: HTTPURLResponse,
                                                   parsedType: ParsedType.Type,
@@ -91,6 +135,15 @@ extension RequestPerformable {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    // MARK: - Empty result
+    private func getEmptyResult<ParsedType: Decodable>(parsedType: ParsedType.Type) -> ParsedType {
+        
+        let emptyEncodedObj = EmptyType()
+        let data = try! emptyEncodedObj.myData()
+        
+        return try! self.decoder.decode(ParsedType.self, from: data)
     }
     
 }

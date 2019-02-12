@@ -8,11 +8,17 @@
 
 enum NetworkingError: Error {
     case defaultError
+    case badData
+    case responseError(String)
     
     var description: String {
         switch self {
-        default:
+        case .defaultError:
             return "Standart error"
+        case .badData:
+            return "No data or response"
+        case .responseError(let errorText):
+            return errorText
         }
         
     }

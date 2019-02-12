@@ -64,9 +64,12 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDS-VC-vRP">
                                         <rect key="frame" x="0.0" y="272" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
-                                        <state key="normal" title="Unknown">
+                                        <state key="normal" title="Change password">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="changePassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xER-h0-xjM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

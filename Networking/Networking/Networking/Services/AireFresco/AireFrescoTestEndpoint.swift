@@ -13,6 +13,8 @@ enum AireFrescoEndpoint: Endpoint {
     case sighUp
     case sighIn
     
+    case changePassword
+    
     var server: Server {
         return .afServer
     }
@@ -23,6 +25,8 @@ enum AireFrescoEndpoint: Endpoint {
             return "/api/auth/register"
         case .sighIn:
             return "/api/auth/login"
+        case .changePassword:
+            return "/api/me/password"
         }
     }
     
@@ -39,11 +43,15 @@ enum AireFrescoEndpoint: Endpoint {
             return .POST
         case .sighIn:
             return .POST
+        case .changePassword:
+            return .PUT
         }
     }
     
     var isAuthTokenRequired: Bool {
         switch self {
+        case .changePassword:
+            return true
         default:
             return false
         }

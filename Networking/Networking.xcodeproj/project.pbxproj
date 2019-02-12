@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */; };
 		04C892C12209D55E00A1FBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C892BF2209D55E00A1FBA6 /* Main.storyboard */; };
 		04C892C32209D55F00A1FBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C892C22209D55F00A1FBA6 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		04C892B82209D55E00A1FBA6 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C892C02209D55E00A1FBA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +97,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		045B5828221188110044951E /* Bodies */ = {
+			isa = PBXGroup;
+			children = (
+				04C892FB2209D75600A1FBA6 /* SignInBody.swift */,
+				04C892FA2209D75600A1FBA6 /* SignUpBody.swift */,
+				045B582622117EC90044951E /* ChangePasswordBody.swift */,
+			);
+			path = Bodies;
+			sourceTree = "<group>";
+		};
+		045B58292211881B0044951E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04C892FC2209D75600A1FBA6 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		04C892AF2209D55E00A1FBA6 = {
 			isa = PBXGroup;
 			children = (
@@ -140,17 +160,9 @@
 		04C892D32209D72D00A1FBA6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				04C892D42209D72D00A1FBA6 /* UIKit */,
 				04C892D62209D72D00A1FBA6 /* Foundation */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		04C892D42209D72D00A1FBA6 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		04C892D62209D72D00A1FBA6 /* Foundation */ = {
@@ -223,9 +235,8 @@
 			children = (
 				04C892FD2209D75600A1FBA6 /* AireFrescoTestEndpoint.swift */,
 				04C892F92209D75600A1FBA6 /* AireFrescoTestService.swift */,
-				04C892FB2209D75600A1FBA6 /* SignInBody.swift */,
-				04C892FA2209D75600A1FBA6 /* SignUpBody.swift */,
-				04C892FC2209D75600A1FBA6 /* UserModel.swift */,
+				045B5828221188110044951E /* Bodies */,
+				045B58292211881B0044951E /* Models */,
 			);
 			path = AireFresco;
 			sourceTree = "<group>";
@@ -361,6 +372,7 @@
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
+				045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */,
 				04C893032209D75600A1FBA6 /* RequestCreatable.swift in Sources */,
 				04C892DE2209D72D00A1FBA6 /* Error+NSErrorFeatures.swift in Sources */,
 				04C892E92209D74D00A1FBA6 /* KeychainPasswordItem.swift in Sources */,
