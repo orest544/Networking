@@ -38,6 +38,9 @@ extension URLConstructable {
             urlComponents.queryItems = createQueryItems(queries)
         }
         
+//        urlComponents.queryItems = [URLQueryItem(name: "country_code", value: "VEN")/*,
+//                                    URLQueryItem(name: "coupon", value: "fnPyrogI") */]
+        
 //        // Make final URL
 //        guard let finalURL = urlComponents.url else {
 //            // TODO: MAKE SPECIAL ERROR
@@ -51,9 +54,9 @@ extension URLConstructable {
     
     private func createQueryItems(_ queries: Encodable) -> [URLQueryItem] {
         let queriesDictionary = queries.dictionaryForQueries
-        
+    
         return queriesDictionary.enumerated().map {
-            return URLQueryItem(name: "\($0)", value: "\($1)")
+            return URLQueryItem(name: "\($1.key)", value: "\($1.value)")
         }
     }
 

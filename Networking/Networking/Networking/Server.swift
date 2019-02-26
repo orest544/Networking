@@ -70,6 +70,10 @@ struct AFServer: ServerInterface {
         //return "airfresko.tk" // DEV
     }
 }
+//
+//struct Google {
+//    <#fields#>
+//}
 
 //struct TestServer: ServerInterface {
 //    var scheme: ServerScheme {

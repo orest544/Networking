@@ -42,6 +42,7 @@
 		04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */; };
 		04C893152209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */; };
 		04C893172209D76400A1FBA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893162209D76400A1FBA6 /* ViewController.swift */; };
+		04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWithQueriesService.swift; sourceTree = "<group>"; };
 		04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPaymentPlansQueriesModel.swift; sourceTree = "<group>"; };
 		04C893162209D76400A1FBA6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../../../Currency convertor/Currency convertor/ViewController.swift"; sourceTree = "<group>"; };
+		04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				04C892F42209D75600A1FBA6 /* Currencies */,
 				04C892F82209D75600A1FBA6 /* AireFresco */,
 				04C892FE2209D75600A1FBA6 /* AFWithQueries */,
+				04D95A502225679500B25E19 /* New Group */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -250,6 +253,14 @@
 				04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */,
 			);
 			path = AFWithQueries;
+			sourceTree = "<group>";
+		};
+		04D95A502225679500B25E19 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +380,7 @@
 				04C893112209D75600A1FBA6 /* AireFrescoTestEndpoint.swift in Sources */,
 				04C892E12209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift in Sources */,
 				04C8930F2209D75600A1FBA6 /* SignInBody.swift in Sources */,
+				04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */,
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
