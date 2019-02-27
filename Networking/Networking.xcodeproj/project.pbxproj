@@ -43,6 +43,10 @@
 		04C893152209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */; };
 		04C893172209D76400A1FBA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893162209D76400A1FBA6 /* ViewController.swift */; };
 		04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */; };
+		04D95A5422256CC000B25E19 /* GooglePlaceDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */; };
+		04D95A5622256CEE00B25E19 /* GoogleAutocompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */; };
+		04D95A5822268A9D00B25E19 /* GoogleAutocompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5722268A9D00B25E19 /* GoogleAutocompleteService.swift */; };
+		04D95A5A22268B7B00B25E19 /* GoogleAutocompleteQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5922268B7B00B25E19 /* GoogleAutocompleteQueries.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +88,10 @@
 		04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPaymentPlansQueriesModel.swift; sourceTree = "<group>"; };
 		04C893162209D76400A1FBA6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../../../Currency convertor/Currency convertor/ViewController.swift"; sourceTree = "<group>"; };
 		04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteEndpoint.swift; sourceTree = "<group>"; };
+		04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceDetailsModel.swift; sourceTree = "<group>"; };
+		04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteModel.swift; sourceTree = "<group>"; };
+		04D95A5722268A9D00B25E19 /* GoogleAutocompleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteService.swift; sourceTree = "<group>"; };
+		04D95A5922268B7B00B25E19 /* GoogleAutocompleteQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteQueries.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +226,7 @@
 				04C892F42209D75600A1FBA6 /* Currencies */,
 				04C892F82209D75600A1FBA6 /* AireFresco */,
 				04C892FE2209D75600A1FBA6 /* AFWithQueries */,
-				04D95A502225679500B25E19 /* New Group */,
+				04D95A502225679500B25E19 /* GoogleAutocomplete */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -255,12 +263,16 @@
 			path = AFWithQueries;
 			sourceTree = "<group>";
 		};
-		04D95A502225679500B25E19 /* New Group */ = {
+		04D95A502225679500B25E19 /* GoogleAutocomplete */ = {
 			isa = PBXGroup;
 			children = (
 				04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */,
+				04D95A5722268A9D00B25E19 /* GoogleAutocompleteService.swift */,
+				04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */,
+				04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */,
+				04D95A5922268B7B00B25E19 /* GoogleAutocompleteQueries.swift */,
 			);
-			path = "New Group";
+			path = GoogleAutocomplete;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +379,8 @@
 				04C8930E2209D75600A1FBA6 /* SignUpBody.swift in Sources */,
 				04C893172209D76400A1FBA6 /* ViewController.swift in Sources */,
 				04C893102209D75600A1FBA6 /* UserModel.swift in Sources */,
+				04D95A5822268A9D00B25E19 /* GoogleAutocompleteService.swift in Sources */,
+				04D95A5A22268B7B00B25E19 /* GoogleAutocompleteQueries.swift in Sources */,
 				04C892E82209D74D00A1FBA6 /* KeychainConfiguration.swift in Sources */,
 				04C893152209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift in Sources */,
 				04C892E72209D74D00A1FBA6 /* KeychainManager.swift in Sources */,
@@ -374,6 +388,7 @@
 				04C893052209D75600A1FBA6 /* URLConstructable.swift in Sources */,
 				04C892DF2209D72D00A1FBA6 /* Encodable+PerformDictionary.swift in Sources */,
 				04C8930B2209D75600A1FBA6 /* CurrencyModel.swift in Sources */,
+				04D95A5422256CC000B25E19 /* GooglePlaceDetailsModel.swift in Sources */,
 				04C8930A2209D75600A1FBA6 /* CurrencyService.swift in Sources */,
 				04C893072209D75600A1FBA6 /* MyRequest.swift in Sources */,
 				04C8930C2209D75600A1FBA6 /* CurrencyEndpoint.swift in Sources */,
@@ -388,6 +403,7 @@
 				04C893032209D75600A1FBA6 /* RequestCreatable.swift in Sources */,
 				04C892DE2209D72D00A1FBA6 /* Error+NSErrorFeatures.swift in Sources */,
 				04C892E92209D74D00A1FBA6 /* KeychainPasswordItem.swift in Sources */,
+				04D95A5622256CEE00B25E19 /* GoogleAutocompleteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

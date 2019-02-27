@@ -60,7 +60,8 @@ extension RequestPerformable {
             
             /// LOGs
             if logsEnable {
-                self.printLogs(with: response,
+                self.printLogs(with: request,
+                               response: response,
                                parsedType: ParsedType.self,
                                data: data)
             }
@@ -124,9 +125,11 @@ extension RequestPerformable {
     }
     
     // MARK: - LOGs
-    private func printLogs<ParsedType: Decodable>(with response: HTTPURLResponse,
+    private func printLogs<ParsedType: Decodable>(with request: RequestCreatable,
+                                                  response: HTTPURLResponse,
                                                   parsedType: ParsedType.Type,
                                                   data: Data) {
+        print("\nFinal URL: \(request.endpoint.asURL())")
         print("\nResponse code: \(response.statusCode) (\(ParsedType.self))" )
         
         do {

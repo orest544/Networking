@@ -44,6 +44,10 @@ extension Server {
         return .init(AFServer())
     }
     
+    static var googleAPIsServer: Server {
+        return .init(GoogleAPIsServer())
+    }
+    
 //    static var test: Server {
 //        return .init(TestServer())
 //    }
@@ -70,10 +74,16 @@ struct AFServer: ServerInterface {
         //return "airfresko.tk" // DEV
     }
 }
-//
-//struct Google {
-//    <#fields#>
-//}
+
+struct GoogleAPIsServer: ServerInterface {
+    var scheme: ServerScheme {
+        return .https
+    }
+    
+    var host: String {
+        return "maps.googleapis.com"
+    }
+}
 
 //struct TestServer: ServerInterface {
 //    var scheme: ServerScheme {
