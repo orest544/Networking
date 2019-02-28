@@ -37,10 +37,7 @@ extension URLConstructable {
         if let queries = queries {
             urlComponents.queryItems = createQueryItems(queries)
         }
-        
-//        urlComponents.queryItems = [URLQueryItem(name: "country_code", value: "VEN")/*,
-//                                    URLQueryItem(name: "coupon", value: "fnPyrogI") */]
-        
+
 //        // Make final URL
 //        guard let finalURL = urlComponents.url else {
 //            // TODO: MAKE SPECIAL ERROR

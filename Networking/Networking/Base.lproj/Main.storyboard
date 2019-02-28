@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3lO-el-eXd">
-                                <rect key="frame" x="0.0" y="50" width="375" height="378"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="446"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z54-Je-aWd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
@@ -79,6 +79,16 @@
                                         </state>
                                         <connections>
                                             <action selector="getGoogleAutocomplete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6gk-WE-WWj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hs8-l9-xkr">
+                                        <rect key="frame" x="0.0" y="408" width="375" height="38"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
+                                        <state key="normal" title="Test button">
+                                            <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JOw-Mx-kIB"/>
                                         </connections>
                                     </button>
                                 </subviews>

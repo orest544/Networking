@@ -42,6 +42,8 @@
 		04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */; };
 		04C893152209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */; };
 		04C893172209D76400A1FBA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893162209D76400A1FBA6 /* ViewController.swift */; };
+		04CA27AA2227E817006E3FE0 /* RefreshTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA27A92227E817006E3FE0 /* RefreshTokenEndpoint.swift */; };
+		04CA27AC2227EE3A006E3FE0 /* RefreshTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA27AB2227EE3A006E3FE0 /* RefreshTokenHandler.swift */; };
 		04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */; };
 		04D95A5422256CC000B25E19 /* GooglePlaceDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */; };
 		04D95A5622256CEE00B25E19 /* GoogleAutocompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */; };
@@ -87,6 +89,8 @@
 		04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWithQueriesService.swift; sourceTree = "<group>"; };
 		04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPaymentPlansQueriesModel.swift; sourceTree = "<group>"; };
 		04C893162209D76400A1FBA6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../../../Currency convertor/Currency convertor/ViewController.swift"; sourceTree = "<group>"; };
+		04CA27A92227E817006E3FE0 /* RefreshTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpoint.swift; sourceTree = "<group>"; };
+		04CA27AB2227EE3A006E3FE0 /* RefreshTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenHandler.swift; sourceTree = "<group>"; };
 		04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteEndpoint.swift; sourceTree = "<group>"; };
 		04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceDetailsModel.swift; sourceTree = "<group>"; };
 		04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteModel.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 		04C892EA2209D75600A1FBA6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				04CA27A82227E7FE006E3FE0 /* RefreshTokenService */,
 				04C892F12209D75600A1FBA6 /* HTTPMethod.swift */,
 				04C892F22209D75600A1FBA6 /* NetworkingErrors.swift */,
 				04C892EF2209D75600A1FBA6 /* Server.swift */,
@@ -261,6 +266,15 @@
 				04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */,
 			);
 			path = AFWithQueries;
+			sourceTree = "<group>";
+		};
+		04CA27A82227E7FE006E3FE0 /* RefreshTokenService */ = {
+			isa = PBXGroup;
+			children = (
+				04CA27A92227E817006E3FE0 /* RefreshTokenEndpoint.swift */,
+				04CA27AB2227EE3A006E3FE0 /* RefreshTokenHandler.swift */,
+			);
+			path = RefreshTokenService;
 			sourceTree = "<group>";
 		};
 		04D95A502225679500B25E19 /* GoogleAutocomplete */ = {
@@ -375,6 +389,7 @@
 				04C893092209D75600A1FBA6 /* NetworkingErrors.swift in Sources */,
 				04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */,
 				04C893042209D75600A1FBA6 /* Networking.swift in Sources */,
+				04CA27AC2227EE3A006E3FE0 /* RefreshTokenHandler.swift in Sources */,
 				04C892E02209D72D00A1FBA6 /* JSONDecoder+SnakeCaseDecoder.swift in Sources */,
 				04C8930E2209D75600A1FBA6 /* SignUpBody.swift in Sources */,
 				04C893172209D76400A1FBA6 /* ViewController.swift in Sources */,
@@ -399,6 +414,7 @@
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
+				04CA27AA2227E817006E3FE0 /* RefreshTokenEndpoint.swift in Sources */,
 				045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */,
 				04C893032209D75600A1FBA6 /* RequestCreatable.swift in Sources */,
 				04C892DE2209D72D00A1FBA6 /* Error+NSErrorFeatures.swift in Sources */,

@@ -8,19 +8,33 @@
 
 import Foundation
 
+enum StatusCodeResult {
+    case good
+    case bad
+    case refresh
+}
+
+fileprivate enum StatusCodeValue {
+    static let goodRange = 200...299
+    
+    // change for your value if needed
+    static let refreshCode = 401
+}
+
 extension HTTPURLResponse {
     var isStatusCodeInOkRange: Bool {
         return 200...299 ~= statusCode
-
-        // Create some method(for example: checkStatusCode) which will return case with result, for example
-        // inOkRange
-        // refreshToken
-        //
-        //        switch statusCode {
-        //        case 200...299:
-        //            return "OK RANGE"
-        //        case 401:
-        //            return "REFRESH"
-        //        }
     }
+    
+    func validateStatusCode() -> StatusCodeResult {
+        switch statusCode {
+        case StatusCodeValue.goodRange:
+            return .good
+        case StatusCodeValue.refreshCode:
+            return .refresh
+        default:
+            return .bad
+        }
+    }
+
 }

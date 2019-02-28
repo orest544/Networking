@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct CurrencyQuery : Encodable {
+    let json: String
+}
+
 enum CurrencyEndpoint: Endpoint {
     
     case getCurrencies
@@ -20,14 +24,15 @@ enum CurrencyEndpoint: Endpoint {
     var path: String {
         switch self {
         case .getCurrencies:
-            return "/NBUStatService/v1/statdirectory/exchange?json"
+            return "/NBUStatService/v1/statdirectory/exchange"
         }
     }
     
     var queries: Encodable? {
         switch self {
-        default:
-            return nil
+        case .getCurrencies:
+            let queries = CurrencyQuery(json: "")
+            return queries
         }
     }
     

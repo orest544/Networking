@@ -41,7 +41,7 @@ extension RequestCreatable {
         do {
             let data = try parameters.myData()
             let json = try JSONSerialization.jsonObject(with: data, options: [])
-            print("BODY JSON: ", json)
+            print("\nBODY JSON: ", json)
             request.httpBody = data//try parameters.myData()
         } catch {
             // TODO: MAKE SPECIAL ERROR

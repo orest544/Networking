@@ -16,7 +16,7 @@ struct AFWithQueriesService: RequestPerformable {
         let endpoint = AFWithQueriesEndpoint.getPaymentPlans(queries: queries)
         let request = MyRequest(endpoint: endpoint)
         
-        return performDataTask(with: request)
+        return performDataTask(with: request, logsEnable: true)
     }
 
 }
