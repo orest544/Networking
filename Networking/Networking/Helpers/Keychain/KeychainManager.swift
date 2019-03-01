@@ -16,6 +16,7 @@ class KeychainManager {
             let tokenItems = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
                                                   account: "\(id)")
             try tokenItems.savePassword(token)
+            print("Saving new token into keychain: \(token)")
             return true
         } catch {
             print("Error updating keychain - \(error)")
@@ -28,6 +29,7 @@ class KeychainManager {
             let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
                                                  account: "\(id)")
             let keychainToken = try tokenItem.readPassword()
+            print("Reading token from keychain: \(keychainToken)")
             return keychainToken
         } catch {
             print("Error reading token from keychain - \(error)")

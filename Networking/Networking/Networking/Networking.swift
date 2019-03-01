@@ -9,8 +9,8 @@
 import Foundation
 import BrightFutures
 
-struct Test<ParsedType: Decodable> {
-    var currentPromice: Promise<ParsedType, NetworkingError>?
+struct PromiseStorage<ParsedType: Decodable> {
+    var currentPromise: Promise<ParsedType, NetworkingError>?
 }
 
 fileprivate struct EmptyType: Encodable {
@@ -44,13 +44,13 @@ extension RequestPerformable {
     // MARK: - DataTask
     func performDataTask<ParsedType: Decodable>(with request: RequestCreatable,
                                                 logsEnable: Bool = false,
-                                                storage: Test<ParsedType>? = nil) -> Future<ParsedType, NetworkingError> {
+                                                storage: PromiseStorage<ParsedType>? = nil) -> Future<ParsedType, NetworkingError> {
         var promise = Promise<ParsedType, NetworkingError>()
-        if let _promise = storage?.currentPromice {
+        if let _promise = storage?.currentPromise {
             promise = _promise
         }
 //        let promise = Promise<ParsedType, NetworkingError>()
-        let _storage = Test(currentPromice: promise)
+        let _storage = PromiseStorage(currentPromise: promise)
         
         let dataTask = session.dataTask(with: request.asURLRequest()) { (data, response, error) in
             
@@ -179,7 +179,7 @@ extension RequestPerformable {
     private func refreshToken<ParsedType: Decodable>(andCallApiAgainWith request: RequestCreatable,
                                                      logsEnable: Bool,
                                                      parsedType: ParsedType.Type,
-                                                     storage: Test<ParsedType>) {
+                                                     storage: PromiseStorage<ParsedType>) {
         let refreshTokenEndpoint = RefreshTokenEndpoint.refreshToken
         let refreshTokenRequest = MyRequest(endpoint: refreshTokenEndpoint)
         
@@ -220,11 +220,11 @@ extension RequestPerformable {
                 
                 print("calling api againg after refreshing")
                 // Investigate it!
-//                let _ : Future<ParsedType, NetworkingError> = self.performDataTask(with: request,
-//                                                                                   logsEnable: logsEnable)
-                self.performDataTask(with: request,
-                                     logsEnable: logsEnable,
-                                     storage: storage)
+                //                let _ : Future<ParsedType, NetworkingError> = self.performDataTask(with: request,
+                //                                                                                   logsEnable: logsEnable)
+                let _ = self.performDataTask(with: request,
+                                             logsEnable: logsEnable,
+                                             storage: storage)
 //                Test.currentTask?.resume()
             }
         }.resume()
