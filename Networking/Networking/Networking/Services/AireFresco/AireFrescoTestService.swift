@@ -9,7 +9,7 @@
 import Foundation
 import BrightFutures
 
-class AireFrescoTestService: RequestPerformable {
+class AireFrescoTestService: NSObject, RequestPerformable {
     
     func sighUp(with userBody: SignUpBody) -> Future<UserModel, NetworkingError> {
         

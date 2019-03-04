@@ -29,11 +29,12 @@ extension RequestCreatable {
         request.addValue("application/json", forHTTPHeaderField: "content-type")
     }
     
+    // TODO: mb move this to URLRequest extension
     func addAuthHeaderFor(request: inout URLRequest) {
         // NOTE: Retrieve token, customize for your porposes
         let userID = UserDefaults.standard.integer(forKey: "userID")
         let token = KeychainManager.readTokenFromKeychain(userID)
-        
+
         request.setValue(token, forHTTPHeaderField: "Authorization")
     }
     

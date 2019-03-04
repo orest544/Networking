@@ -9,7 +9,7 @@
 import Foundation
 import BrightFutures
 
-struct AFWithQueriesService: RequestPerformable {
+class AFWithQueriesService: RequestPerformable {
     
     func getPaymentPlans(queries: Encodable) -> Future<PaymentPlansModel, NetworkingError> {
         

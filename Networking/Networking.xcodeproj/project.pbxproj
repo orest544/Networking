@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		047AA5C7222D1D6E00B9F0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C6222D1D6E00B9F0DA /* ViewController.swift */; };
+		047AA5C9222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */; };
 		04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */; };
 		04C892C12209D55E00A1FBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C892BF2209D55E00A1FBA6 /* Main.storyboard */; };
 		04C892C32209D55F00A1FBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C892C22209D55F00A1FBA6 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		047AA5C6222D1D6E00B9F0DA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+RenewTokenInHeader.swift"; sourceTree = "<group>"; };
 		04C892B82209D55E00A1FBA6 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C892C02209D55E00A1FBA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				04C892DA2209D72D00A1FBA6 /* JSONDecoder+SnakeCaseDecoder.swift */,
 				04C892D92209D72D00A1FBA6 /* Encodable+PerformDictionary.swift */,
 				04C892DB2209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift */,
+				047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				04C8930E2209D75600A1FBA6 /* SignUpBody.swift in Sources */,
 				04C893102209D75600A1FBA6 /* UserModel.swift in Sources */,
 				04D95A5822268A9D00B25E19 /* GoogleAutocompleteService.swift in Sources */,
+				047AA5C9222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift in Sources */,
 				04D95A5A22268B7B00B25E19 /* GoogleAutocompleteQueries.swift in Sources */,
 				04C892E82209D74D00A1FBA6 /* KeychainConfiguration.swift in Sources */,
 				04C893152209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift in Sources */,
