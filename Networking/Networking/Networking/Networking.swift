@@ -9,22 +9,29 @@
 import Foundation
 import BrightFutures
 
-struct RequestDetails {
-    let request: RequestCreatable
-    let promise: AnyObject
-}
+//protocol Typed {
+//    associatedtype T
+//    var promise: Promise<T, NetworkingError> { set get }
+//}
 
-enum RequestDetailsStorage {
-    static var dict = [URLSessionDataTask: RequestDetails]()
-}
+//struct MyPromise<T: Decodable>: Typed {
+//    var promise: Promise<T, NetworkingError>
+//}
 
-struct PromiseStorage<ParsedType: Decodable> {
-    var currentPromise: Promise<ParsedType, NetworkingError>?
-}
+//struct RequestDetails {
+//    let request: RequestCreatable
+//    var promise: AnyObject
+//    let type: Any.Type
+//}
+//
+//struct RequestDetailsStorage {
+//    static var dict = [URLSessionDataTask: RequestDetails]()
+//}
 
-struct CurrentDataTaskStorage {
-    static var dataTask: URLSessionDataTask?
-}
+//struct PromiseStorage<ParsedType: Decodable> {
+//    var currentPromise: Promise<ParsedType, NetworkingError>?
+//}
+
 
 fileprivate struct EmptyType: Encodable {
     
@@ -34,12 +41,26 @@ struct EmptyResult: Decodable {
     
 }
 
+// TEST
+struct CompletionHandlerStorage {
+    static var handlers = [(Data?, URLResponse?, Error?) -> Void]()
+}
+
+// NOTE: This is for having access to dataTask inside in completion handler
+struct CurrentDataTaskStorage {
+    static var dataTask: URLSessionDataTask?
+}
+
+
+enum DataTasksStorage {
+    static var tasks = [URLSessionDataTask]()
+    static var tempTasks = [URLSessionDataTask]()
+}
+
+
 protocol RequestPerformable {
     var session: URLSession { get }
     var decoder: JSONDecoder { get }
-
-    //func performDataTask<ParsedType: Codable>(with request: RequestCreatable,
-                                              //logsEnable: Bool) -> Future<ParsedType, NetworkingError>
 }
 
 // NOTE: -  MAYBE ADD ASSOTIATED VALUE TO A PROTOCOL
@@ -54,25 +75,19 @@ extension RequestPerformable {
         return JSONDecoder.snakeCaseDecoder()
     }
     
-    
     // MARK: - DataTask
     func performDataTask<ParsedType: Decodable>(with request: RequestCreatable,
-                                                logsEnable: Bool = false,
-                                                promiseStorage: PromiseStorage<ParsedType>? = nil) -> Future<ParsedType, NetworkingError> {
+                                                logsEnable: Bool = false) -> Future<ParsedType, NetworkingError> {
         
-        var promise = Promise<ParsedType, NetworkingError>()
-        if let _promise = promiseStorage?.currentPromise {
-            promise = _promise
-        }
-//        let promise = Promise<ParsedType, NetworkingError>()
-        let _storage = PromiseStorage(currentPromise: promise)
+        let promise = Promise<ParsedType, NetworkingError>()
         
-        let dataTask = session.dataTask(with: request.asURLRequest()) { (data, response, error) in
+        let completionHandler: (Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
             /// Handle Error
             if let networkingError = self.handleError(error) {
                 // TEST
                 if let dataTask = CurrentDataTaskStorage.dataTask {
-                   RequestDetailsStorage.dict.removeValue(forKey: dataTask)
+                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
+                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
                 }
                 return promise.failure(networkingError)
             }
@@ -84,7 +99,8 @@ extension RequestPerformable {
                     print("Smth goes wrong")
                     // TEST
                     if let dataTask = CurrentDataTaskStorage.dataTask {
-                        RequestDetailsStorage.dict.removeValue(forKey: dataTask)
+                        DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
+                        DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
                     }
                     return promise.failure(NetworkingError.badData)
             }
@@ -96,16 +112,13 @@ extension RequestPerformable {
                                parsedType: ParsedType.self,
                                data: data)
             }
-        
+            
             /// Validate status code
             switch response.validateStatusCode() {
             case .good: break
             case .refresh:
                 print("make refresh")
-                self.refreshToken(andCallApiAgainWith: request,
-                                  logsEnable: logsEnable,
-                                  parsedType: ParsedType.self,
-                                  storage: _storage)
+                self.refreshToken()
                 return
             case .bad:
                 return self.handeBadResponse(with: data, andGivePromiseFor: promise)
@@ -116,7 +129,8 @@ extension RequestPerformable {
                 let emptyResult = self.getEmptyResult(parsedType: ParsedType.self)
                 // TEST
                 if let dataTask = CurrentDataTaskStorage.dataTask {
-                    RequestDetailsStorage.dict.removeValue(forKey: dataTask)
+                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
+                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
                 }
                 return promise.success(emptyResult)
             }
@@ -126,7 +140,8 @@ extension RequestPerformable {
                 let parsedData = try self.decoder.decode(ParsedType.self, from: data)
                 // TEST
                 if let dataTask = CurrentDataTaskStorage.dataTask {
-                    RequestDetailsStorage.dict.removeValue(forKey: dataTask)
+                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
+                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
                 }
                 promise.success(parsedData)
             } catch let catchError {
@@ -134,16 +149,24 @@ extension RequestPerformable {
                 print(catchError)
                 // TEST
                 if let dataTask = CurrentDataTaskStorage.dataTask {
-                    RequestDetailsStorage.dict.removeValue(forKey: dataTask)
+                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
+                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
                 }
                 return promise.failure(NetworkingError.defaultError)
             }
         }
-        CurrentDataTaskStorage.dataTask = dataTask
-        CurrentDataTaskStorage.dataTask?.resume()
         
-        RequestDetailsStorage.dict[dataTask] = RequestDetails(request: request,
-                                                              promise: promise)
+        CompletionHandlerStorage.handlers.append(completionHandler)
+        
+        let dataTask = session.dataTask(with: request.asURLRequest(), completionHandler: completionHandler)
+        
+        DataTasksStorage.tasks.append(dataTask)
+        #warning("MB NEED COPY NOT REFERENCE!")
+        // unreal make copy of dataTask(
+        DataTasksStorage.tempTasks.append(dataTask.copy() as! URLSessionDataTask)
+        
+        CurrentDataTaskStorage.dataTask = dataTask
+        //CurrentDataTaskStorage.dataTask?.resume()
         
         return promise.future
     }
@@ -177,7 +200,8 @@ extension RequestPerformable {
                                                          andGivePromiseFor promise: Promise<ParsedType, NetworkingError>) {
         // TEST
         if let dataTask = CurrentDataTaskStorage.dataTask {
-            RequestDetailsStorage.dict.removeValue(forKey: dataTask)
+            DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
+            DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
         }
         
         // TODO: Handle error
@@ -219,17 +243,13 @@ extension RequestPerformable {
 // TODO: Need to make refresh universal also for upload and download tasks
 // MARK: - Refresh token
 extension RequestPerformable {
-    private func refreshToken<ParsedType: Decodable>(andCallApiAgainWith request: RequestCreatable,
-                                                     logsEnable: Bool,
-                                                     parsedType: ParsedType.Type,
-                                                     storage: PromiseStorage<ParsedType>) {
+    private func refreshToken() {
+        
+        DataTasksStorage.tasks.forEach { $0.cancel() }
+        DataTasksStorage.tasks.removeAll()
+        
         let refreshTokenEndpoint = RefreshTokenEndpoint.refreshToken
         let refreshTokenRequest = MyRequest(endpoint: refreshTokenEndpoint)
-
-        RequestDetailsStorage.dict.forEach {
-            $0.key.cancel()
-        }
-        //RequestDetailsStorage.dict.removeAll()
         
         session.dataTask(with: refreshTokenRequest.asURLRequest()) { (data, response, error) in
             guard error == nil else {
@@ -252,7 +272,7 @@ extension RequestPerformable {
             }
             
             guard data != nil else {
-                print("Refreshing token bad data, data: \(data)")
+                print("Refreshing token bad data, data: \(String(describing: data))")
                 RefreshTokenHandler.handleFailure()
                 return
             }
@@ -266,19 +286,15 @@ extension RequestPerformable {
                 }
                 
                 print("calling api againg after refreshing")
-                // Investigate it!
-                //                let _ : Future<ParsedType, NetworkingError> = self.performDataTask(with: request,
-                //                                                                                   logsEnable: logsEnable)
-                
                 #warning("Call all request again")
-                RequestDetailsStorage.dict.forEach { dictPair in
-                    let _ = performDataTask(with: dictPair.value.request,
-                                            logsEnable: logsEnable,
-                                            promiseStorage: dictPair.value.promise)
-                }
                 
+//                DataTasksStorage.tempTasks.forEach {
+//                    $0.resume()
+//                }
+            
             }
         }.resume()
     }
-
 }
+
+
