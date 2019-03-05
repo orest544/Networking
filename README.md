@@ -1,2 +1,2 @@
 # Networking
-Networking with blackjack and whores
+Networking with blackjack and hookers
