@@ -41,31 +41,31 @@ class ViewController: UIViewController {
                 print(error.localizedDescription)
             }
 
-//        afWithQueriesService.getPaymentPlans(queries: queries)
-//            .onSuccess { (paymentPlans) in
-//                print(paymentPlans)
-//            }.onFailure { (error) in
-//                print(error.localizedDescription)
-//            }
-//
-//        let changePasswordBody = ChangePasswordBody(newPassword: "Test1234",
-//                                                    newPasswordConfirmation: "Test1234",
-//                                                    currentPassword: "Test1234")
-//
-//        aireFrescoTestService.changePassword(with: changePasswordBody)
-//            .onSuccess { _ in
-//                print("Success!!")
-//            }.onFailure { (error) in
-//                print(error)
-//            }
-//
-//        aireFrescoTestService.changePassword(with: changePasswordBody)
-//            .onSuccess { _ in
-//                print("Success!!")
-//            }.onFailure { (error) in
-//                print(error)
-//            }
-//
+        afWithQueriesService.getPaymentPlans(queries: queries)
+            .onSuccess { (paymentPlans) in
+                print(paymentPlans)
+            }.onFailure { (error) in
+                print(error.localizedDescription)
+            }
+
+        let changePasswordBody = ChangePasswordBody(newPassword: "Test1234",
+                                                    newPasswordConfirmation: "Test1234",
+                                                    currentPassword: "Test1234")
+
+        aireFrescoTestService.changePassword(with: changePasswordBody)
+            .onSuccess { _ in
+                print("Success!!")
+            }.onFailure { (error) in
+                print(error)
+            }
+
+        aireFrescoTestService.changePassword(with: changePasswordBody)
+            .onSuccess { _ in
+                print("Success!!")
+            }.onFailure { (error) in
+                print(error)
+            }
+
     }
     
     private func setUpRefresherView() {
@@ -195,15 +195,44 @@ extension ViewController {
         
         let urlRequest = request.asURLRequest()
         
-        URLSession.shared.dataTask(with: urlRequest, completionHandler: CompletionHandlerStorage.handlers.first!).resume()
+        //URLSession.shared.dataTask(with: urlRequest, completionHandler: CompletionHandlerStorage.handlers.first!).resume()
     }
     
     @IBAction func cancelTasks(_ sender: UIButton) {
-//        DataTasksStorage.tempTasks.forEach {
-//            $0.resume()
-//        }
-//
-//        DataTasksStorage.tempTasks.removeAll()
+        let queries = GetPaymentPlansQuery(countryCode: "VEN",
+                                           coupon: "fnPyrogI")
+        afWithQueriesService.getPaymentPlans(queries: queries)
+            .onSuccess { (paymentPlans) in
+                print(paymentPlans)
+            }.onFailure { (error) in
+                print(error.localizedDescription)
+        }
+        
+        afWithQueriesService.getPaymentPlans(queries: queries)
+            .onSuccess { (paymentPlans) in
+                print(paymentPlans)
+            }.onFailure { (error) in
+                print(error.localizedDescription)
+        }
+        
+        let changePasswordBody = ChangePasswordBody(newPassword: "Test1234",
+                                                    newPasswordConfirmation: "Test1234",
+                                                    currentPassword: "Test1234")
+        
+        aireFrescoTestService.changePassword(with: changePasswordBody)
+            .onSuccess { _ in
+                print("Success!!")
+            }.onFailure { (error) in
+                print(error)
+        }
+        
+        aireFrescoTestService.changePassword(with: changePasswordBody)
+            .onSuccess { _ in
+                print("Success!!")
+            }.onFailure { (error) in
+                print(error)
+        }
+
     }
     
     

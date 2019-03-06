@@ -10,7 +10,7 @@ import Foundation
 
 typealias Endpoint = RequestContructable & URLConstructable
 
-struct MyRequest: RequestCreatable {
+class MyRequest: RequestCreatable {
     
     var endpoint: Endpoint
     var body: Encodable?

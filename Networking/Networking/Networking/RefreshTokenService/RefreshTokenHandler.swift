@@ -13,7 +13,7 @@ enum RefreshTokenHandler {
     static func handleFailure() {
         /// Make your logOut or smth else if refresh is failures
         // TODO: mb add functionality for deleting token from key chain
-        DataTasksStorage.tempTasks.removeAll()
+        DataTaskDetailsStorage.detailsDict.removeAll()
         print("Handle failure of refresh token, removingAll in DataTasksStorage.tempTasks")
     }
 

@@ -42,20 +42,26 @@ struct EmptyResult: Decodable {
 }
 
 // TEST
-struct CompletionHandlerStorage {
-    static var handlers = [(Data?, URLResponse?, Error?) -> Void]()
+struct URLSessionDetails {
+    let request: RequestCreatable
+    // TODO: Need typealias
+    let handler: (Data?, URLResponse?, Error?) -> Void
+}
+
+enum DataTaskDetailsStorage {
+    static var detailsDict = [URLSessionDataTask: URLSessionDetails]()
 }
 
 // NOTE: This is for having access to dataTask inside in completion handler
-struct CurrentDataTaskStorage {
-    static var dataTask: URLSessionDataTask?
-}
+//struct CurrentDataTaskStorage {
+//    static var dataTask: URLSessionDataTask?
+//}
 
-
-enum DataTasksStorage {
-    static var tasks = [URLSessionDataTask]()
-    static var tempTasks = [URLSessionDataTask]()
-}
+//
+//enum DataTasksStorage {
+//    static var tasks = [URLSessionDataTask]()
+//    static var tempTasks = [URLSessionDataTask]()
+//}
 
 
 protocol RequestPerformable {
@@ -78,17 +84,28 @@ extension RequestPerformable {
     // MARK: - DataTask
     func performDataTask<ParsedType: Decodable>(with request: RequestCreatable,
                                                 logsEnable: Bool = false) -> Future<ParsedType, NetworkingError> {
-        
+      
         let promise = Promise<ParsedType, NetworkingError>()
         
         let completionHandler: (Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
             /// Handle Error
             if let networkingError = self.handleError(error) {
                 // TEST
-                if let dataTask = CurrentDataTaskStorage.dataTask {
-                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
-                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
+                switch networkingError {
+                case .canceled: break
+                default:
+                    let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+                        if value.request === request {
+                            return key
+                        }
+                        return nil
+                    })
+                    
+                    keys.forEach({ (urlSessionDataTask) in
+                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                    })
                 }
+        
                 return promise.failure(networkingError)
             }
             
@@ -98,10 +115,16 @@ extension RequestPerformable {
                     // TODO: Handle error
                     print("Smth goes wrong")
                     // TEST
-                    if let dataTask = CurrentDataTaskStorage.dataTask {
-                        DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
-                        DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
-                    }
+                    let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+                        if value.request === request {
+                            return key
+                        }
+                        return nil
+                    })
+                    
+                    keys.forEach({ (urlSessionDataTask) in
+                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                    })
                     return promise.failure(NetworkingError.badData)
             }
             
@@ -121,6 +144,17 @@ extension RequestPerformable {
                 self.refreshToken()
                 return
             case .bad:
+                // TEST
+                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+                    if value.request === request {
+                        return key
+                    }
+                    return nil
+                })
+                
+                keys.forEach({ (urlSessionDataTask) in
+                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                })
                 return self.handeBadResponse(with: data, andGivePromiseFor: promise)
             }
             
@@ -128,10 +162,16 @@ extension RequestPerformable {
             guard "\(ParsedType.self)" != "EmptyResult" else {
                 let emptyResult = self.getEmptyResult(parsedType: ParsedType.self)
                 // TEST
-                if let dataTask = CurrentDataTaskStorage.dataTask {
-                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
-                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
-                }
+                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+                    if value.request === request {
+                        return key
+                    }
+                    return nil
+                })
+                
+                keys.forEach({ (urlSessionDataTask) in
+                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                })
                 return promise.success(emptyResult)
             }
             
@@ -139,34 +179,40 @@ extension RequestPerformable {
             do {
                 let parsedData = try self.decoder.decode(ParsedType.self, from: data)
                 // TEST
-                if let dataTask = CurrentDataTaskStorage.dataTask {
-                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
-                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
-                }
+                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+                    if value.request === request {
+                        return key
+                    }
+                    return nil
+                })
+                
+                keys.forEach({ (urlSessionDataTask) in
+                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                })
                 promise.success(parsedData)
             } catch let catchError {
                 // TODO: Handle error
                 print(catchError)
                 // TEST
-                if let dataTask = CurrentDataTaskStorage.dataTask {
-                    DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
-                    DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
-                }
+                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+                    if value.request === request {
+                        return key
+                    }
+                    return nil
+                })
+                
+                keys.forEach({ (urlSessionDataTask) in
+                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                })
                 return promise.failure(NetworkingError.defaultError)
             }
         }
         
-        CompletionHandlerStorage.handlers.append(completionHandler)
-        
         let dataTask = session.dataTask(with: request.asURLRequest(), completionHandler: completionHandler)
+        dataTask.resume()
         
-        DataTasksStorage.tasks.append(dataTask)
-        #warning("MB NEED COPY NOT REFERENCE!")
-        // unreal make copy of dataTask(
-        DataTasksStorage.tempTasks.append(dataTask.copy() as! URLSessionDataTask)
-        
-        CurrentDataTaskStorage.dataTask = dataTask
-        //CurrentDataTaskStorage.dataTask?.resume()
+        DataTaskDetailsStorage.detailsDict[dataTask] = URLSessionDetails(request: request,
+                                                                         handler: completionHandler)
         
         return promise.future
     }
@@ -174,11 +220,16 @@ extension RequestPerformable {
     // MARK: - Error handling
     private func handleError(_ error: Error?) -> NetworkingError? {
         guard let error = error else { return nil }
-            // TODO: Handle error
-            // -1001 timeout
-            // -1009 inet connection
-            print("\nNetworking ERROR: ", error, "\n")
-            return NetworkingError.defaultError
+        // TODO: Handle error
+        // -1001 timeout
+        // -1009 inet connection
+        print("\nNetworking ERROR: ", error, "\n")
+        
+        if error.code == -999 {
+            return NetworkingError.canceled
+        }
+        
+        return NetworkingError.defaultError
     }
     
     private func checkErrorInResponse(data: Data) -> NetworkingError? {
@@ -198,12 +249,6 @@ extension RequestPerformable {
     
     private func handeBadResponse<ParsedType: Decodable>(with data: Data,
                                                          andGivePromiseFor promise: Promise<ParsedType, NetworkingError>) {
-        // TEST
-        if let dataTask = CurrentDataTaskStorage.dataTask {
-            DataTasksStorage.tasks = DataTasksStorage.tasks.filter { $0 !== dataTask }
-            DataTasksStorage.tempTasks = DataTasksStorage.tempTasks.filter { $0 !== dataTask }
-        }
-        
         // TODO: Handle error
         if let responseError = self.checkErrorInResponse(data: data) {
             return promise.failure(responseError)
@@ -245,8 +290,7 @@ extension RequestPerformable {
 extension RequestPerformable {
     private func refreshToken() {
         
-        DataTasksStorage.tasks.forEach { $0.cancel() }
-        DataTasksStorage.tasks.removeAll()
+        DataTaskDetailsStorage.detailsDict.keys.forEach { $0.cancel() }
         
         let refreshTokenEndpoint = RefreshTokenEndpoint.refreshToken
         let refreshTokenRequest = MyRequest(endpoint: refreshTokenEndpoint)
@@ -288,12 +332,18 @@ extension RequestPerformable {
                 print("calling api againg after refreshing")
                 #warning("Call all request again")
                 
-//                DataTasksStorage.tempTasks.forEach {
-//                    $0.resume()
-//                }
-            
+                let urlSessionDetails = DataTaskDetailsStorage.detailsDict.values
+                urlSessionDetails.forEach {
+                    self.testApiCall(with: $0.request.asURLRequest(), and: $0.handler)
+                }
+                
             }
         }.resume()
+    }
+    
+    // TEST
+    private func testApiCall(with urlRequest: URLRequest, and completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        session.dataTask(with: urlRequest, completionHandler: completionHandler).resume()
     }
 }
 

@@ -10,6 +10,7 @@ enum NetworkingError: Error {
     case defaultError
     case badData
     case responseError(String)
+    case canceled
     
     var description: String {
         switch self {
@@ -19,6 +20,8 @@ enum NetworkingError: Error {
             return "No data or response"
         case .responseError(let errorText):
             return errorText
+        case .canceled:
+            return "canceled"
         }
         
     }
