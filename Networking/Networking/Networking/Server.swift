@@ -51,10 +51,7 @@ extension Server {
     static var traxServer: Server {
         return .init(TraxServer())
     }
-    
-//    static var test: Server {
-//        return .init(TestServer())
-//    }
+
 }
 
 // Separate struct for each Server
@@ -99,12 +96,3 @@ struct TraxServer: ServerInterface {
     }
 }
 
-//struct TestServer: ServerInterface {
-//    var scheme: ServerScheme {
-//        return .https
-//    }
-//
-//    var host: String {
-//        return "test.com"
-//    }
-//}

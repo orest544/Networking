@@ -37,15 +37,7 @@ extension URLConstructable {
         if let queries = queries {
             urlComponents.queryItems = createQueryItems(queries)
         }
-        
-//        urlComponents.queryItems = [URLQueryItem(name: "country_code", value: "VEN")/*,
-//                                    URLQueryItem(name: "coupon", value: "fnPyrogI") */]
-        
-//        // Make final URL
-//        guard let finalURL = urlComponents.url else {
-//            // TODO: MAKE SPECIAL ERROR
-//            throw NetworkingError.defaultError
-//        }
+
         let finalURL = urlComponents.url
         assert(finalURL != nil, "Can't create URL, please check your endpoint enum")
         

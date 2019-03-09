@@ -9,13 +9,8 @@
 import Foundation
 
 protocol RequestCreatable {
-
-//    var endpoint: URL { get set }
-//    var method: HTTPMethod { get }
-//    var authToken: String { get }
     var endpoint: Endpoint { get set }
     var body: Encodable? { get set }
-    //var encoder: JSONEncoder { get }
     
     func addStandartHeadersFor(request: inout URLRequest)
     func addParametersFor(request: inout URLRequest, parameters: Encodable) throws
@@ -30,9 +25,10 @@ extension RequestCreatable {
     }
     
     func addAuthHeaderFor(request: inout URLRequest) {
+        
         // NOTE: Retrieve token, customize for your porposes
-        let userID = UserDefaults.standard.integer(forKey: "userID")
-        let token = KeychainManager.readTokenFromKeychain(userID)
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        let token = KeychainManager.readTokenFromKeychain(idString: userID)
         
         request.setValue(token, forHTTPHeaderField: "Authorization")
     }

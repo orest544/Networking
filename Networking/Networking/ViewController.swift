@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     let afWithQueriesService = AFWithQueriesService()
     let googlePlacesService = GoogleAutocompleteService()
     let traxAuthService = LoginService()
+    let traxSettingsService = SettingsService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,65 +156,26 @@ extension ViewController {
         traxAuthService.logIn(with: userCredentials)
             .onSuccess { (user) in
                 // save token in keychain
-                //KeychainManager.saveTokenToKeychain(0, token: "")
+                let token = user.data.tokenType + " " + user.data.accessToken
+                KeychainManager.saveTokenToKeychain(idString: userCredentials.email,
+                                                    token: token)
+                
+                UserDefaults.standard.set(userCredentials.email, forKey: "userID")
                 print(user)
             }.onFailure { (error) in
                 print(error)
             }
     }
-
-    @IBAction func resumeTasks(_ sender: UIButton) {
-//        DataTasksStorage.tasks.forEach {
-//            $0.resume()
-//        }
-//
-        
-        let queries = GetPaymentPlansQuery(countryCode: "VEN",
-                                           coupon: "fnPyrogI")
-        let endpoint = AFWithQueriesEndpoint.getPaymentPlans(queries: queries)
-        let request = CustomRequest(endpoint: endpoint)
-        
-        let urlRequest = request.asURLRequest()
-        
-        //URLSession.shared.dataTask(with: urlRequest, completionHandler: CompletionHandlerStorage.handlers.first!).resume()
-    }
     
-    @IBAction func cancelTasks(_ sender: UIButton) {
-        let queries = GetPaymentPlansQuery(countryCode: "VEN",
-                                           coupon: "fnPyrogI")
-        afWithQueriesService.getPaymentPlans(queries: queries)
-            .onSuccess { (paymentPlans) in
-                print(paymentPlans)
-            }.onFailure { (error) in
-                print(error.localizedDescription)
-        }
+    @IBAction func getProfileTrax(_ sender: UIButton) {
+        showActivityIndication()
         
-        afWithQueriesService.getPaymentPlans(queries: queries)
-            .onSuccess { (paymentPlans) in
-                print(paymentPlans)
-            }.onFailure { (error) in
-                print(error.localizedDescription)
-        }
-        
-        let changePasswordBody = ChangePasswordBody(newPassword: "Test1234",
-                                                    newPasswordConfirmation: "Test1234",
-                                                    currentPassword: "Test1234")
-        
-        aireFrescoTestService.changePassword(with: changePasswordBody)
-            .onSuccess { _ in
-                print("Success!!")
+        traxSettingsService.getProfile()
+            .onSuccess { (profile) in
+                print(profile.data)
             }.onFailure { (error) in
                 print(error)
-        }
-        
-        aireFrescoTestService.changePassword(with: changePasswordBody)
-            .onSuccess { _ in
-                print("Success!!")
-            }.onFailure { (error) in
-                print(error)
-        }
-
+            }
     }
-    
     
 }

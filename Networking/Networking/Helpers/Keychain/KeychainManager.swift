@@ -11,10 +11,13 @@ import Foundation
 class KeychainManager {
 //    var tokenItems: [KeychainPasswordItem] = []
     
-    static func saveTokenToKeychain(_ id: Int, token: String) -> Bool {
+    // TODO: Refactore it
+    static func saveTokenToKeychain(_ id: Int? = nil,
+                                    idString: String? = nil,
+                                    token: String) -> Bool {
         do {
             let tokenItems = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                  account: "\(id)")
+                                                  account: idString ?? String(id ?? -1))
             try tokenItems.savePassword(token)
             return true
         } catch {
@@ -23,10 +26,10 @@ class KeychainManager {
         }
     }
     
-    static func readTokenFromKeychain(_ id: Int) -> String? {
+    static func readTokenFromKeychain(id: Int? = nil, idString: String? = nil) -> String? {
         do {
             let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                 account: "\(id)")
+                                                 account: idString ?? String(id ?? -1))
             let keychainToken = try tokenItem.readPassword()
             return keychainToken
         } catch {
