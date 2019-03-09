@@ -9,13 +9,8 @@
 import Foundation
 import BrightFutures
 
-struct EmptyType: Encodable {
-    
-}
-
-struct EmptyResult: Decodable {
-    
-}
+struct EmptyType: Encodable { }
+struct EmptyResult: Decodable { }
 
 protocol RequestPerformable {
     var session: URLSession { get }
@@ -25,7 +20,7 @@ protocol RequestPerformable {
                                               logsEnable: Bool) -> Future<ParsedType, NetworkingError>
 }
 
-// NOTE: -  MAYBE ADD ASSOTIATED VALUE TO A PROTOCOL
+// TODO: - MAYBE ADD ASSOTIATED VALUE TO A PROTOCOL
 extension RequestPerformable {
     
     // MARK: - Stuff
@@ -98,15 +93,19 @@ extension RequestPerformable {
         
         return promise.future
     }
-    
+}
+
+// MARK: - Helpfull methods
+extension RequestPerformable {
+
     // MARK: - Error handling
     private func handleError(_ error: Error?) -> NetworkingError? {
         guard let error = error else { return nil }
-            // TODO: Handle error
-            // -1001 timeout
-            // -1009 inet connection
-            print("\nNetworking ERROR: ", error, "\n")
-            return NetworkingError.defaultError
+        // TODO: Handle error
+        // -1001 timeout
+        // -1009 inet connection
+        print("\nNetworking ERROR: ", error, "\n")
+        return NetworkingError.defaultError
     }
     
     private func checkErrorInResponse(data: Data) -> NetworkingError? {
@@ -150,3 +149,5 @@ extension RequestPerformable {
     }
     
 }
+    
+

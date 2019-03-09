@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0423D5132233DA3D007E429D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5122233DA3D007E429D /* ViewController.swift */; };
+		0423D51822340962007E429D /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423D51722340962007E429D /* LoginEndpoint.swift */; };
+		0423D51A22340A93007E429D /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423D51922340A93007E429D /* LoginService.swift */; };
+		0423D51C22340ACC007E429D /* LoginCredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423D51B22340ACC007E429D /* LoginCredentialsModel.swift */; };
+		0423D51E22340BB8007E429D /* TraxUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423D51D22340BB8007E429D /* TraxUserModel.swift */; };
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */; };
 		04C892C12209D55E00A1FBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C892BF2209D55E00A1FBA6 /* Main.storyboard */; };
@@ -27,7 +31,7 @@
 		04C893042209D75600A1FBA6 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892EC2209D75600A1FBA6 /* Networking.swift */; };
 		04C893052209D75600A1FBA6 /* URLConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892ED2209D75600A1FBA6 /* URLConstructable.swift */; };
 		04C893062209D75600A1FBA6 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892EF2209D75600A1FBA6 /* Server.swift */; };
-		04C893072209D75600A1FBA6 /* MyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892F02209D75600A1FBA6 /* MyRequest.swift */; };
+		04C893072209D75600A1FBA6 /* CustomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892F02209D75600A1FBA6 /* CustomRequest.swift */; };
 		04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892F12209D75600A1FBA6 /* HTTPMethod.swift */; };
 		04C893092209D75600A1FBA6 /* NetworkingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892F22209D75600A1FBA6 /* NetworkingErrors.swift */; };
 		04C8930A2209D75600A1FBA6 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892F52209D75600A1FBA6 /* CurrencyService.swift */; };
@@ -51,6 +55,10 @@
 
 /* Begin PBXFileReference section */
 		0423D5122233DA3D007E429D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0423D51722340962007E429D /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
+		0423D51922340A93007E429D /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		0423D51B22340ACC007E429D /* LoginCredentialsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsModel.swift; sourceTree = "<group>"; };
+		0423D51D22340BB8007E429D /* TraxUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraxUserModel.swift; sourceTree = "<group>"; };
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		04C892B82209D55E00A1FBA6 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,7 +80,7 @@
 		04C892EC2209D75600A1FBA6 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		04C892ED2209D75600A1FBA6 /* URLConstructable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLConstructable.swift; sourceTree = "<group>"; };
 		04C892EF2209D75600A1FBA6 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		04C892F02209D75600A1FBA6 /* MyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRequest.swift; sourceTree = "<group>"; };
+		04C892F02209D75600A1FBA6 /* CustomRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRequest.swift; sourceTree = "<group>"; };
 		04C892F12209D75600A1FBA6 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		04C892F22209D75600A1FBA6 /* NetworkingErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingErrors.swift; sourceTree = "<group>"; };
 		04C892F52209D75600A1FBA6 /* CurrencyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -107,6 +115,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0401D61A2234100200AF4787 /* Bodies */ = {
+			isa = PBXGroup;
+			children = (
+				0423D51B22340ACC007E429D /* LoginCredentialsModel.swift */,
+			);
+			name = Bodies;
+			sourceTree = "<group>";
+		};
+		0401D61B2234100F00AF4787 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0423D51D22340BB8007E429D /* TraxUserModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		0423D5142234089B007E429D /* Trax */ = {
+			isa = PBXGroup;
+			children = (
+				0423D515223408C9007E429D /* Auth */,
+				0423D516223408FF007E429D /* Settings */,
+			);
+			name = Trax;
+			path = GoogleAutocomplete;
+			sourceTree = "<group>";
+		};
+		0423D515223408C9007E429D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0423D51722340962007E429D /* LoginEndpoint.swift */,
+				0423D51922340A93007E429D /* LoginService.swift */,
+				0401D61A2234100200AF4787 /* Bodies */,
+				0401D61B2234100F00AF4787 /* Models */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		0423D516223408FF007E429D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		045B5828221188110044951E /* Bodies */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +202,7 @@
 				04C892EA2209D75600A1FBA6 /* Networking */,
 				04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */,
 				0423D5122233DA3D007E429D /* ViewController.swift */,
+				04C892F32209D75600A1FBA6 /* Services */,
 				04C892BF2209D55E00A1FBA6 /* Main.storyboard */,
 				04C892C22209D55F00A1FBA6 /* Assets.xcassets */,
 				04C892C42209D55F00A1FBA6 /* LaunchScreen.storyboard */,
@@ -213,9 +266,8 @@
 				04C892EF2209D75600A1FBA6 /* Server.swift */,
 				04C892ED2209D75600A1FBA6 /* URLConstructable.swift */,
 				04C892EB2209D75600A1FBA6 /* RequestCreatable.swift */,
-				04C892F02209D75600A1FBA6 /* MyRequest.swift */,
+				04C892F02209D75600A1FBA6 /* CustomRequest.swift */,
 				04C892EC2209D75600A1FBA6 /* Networking.swift */,
-				04C892F32209D75600A1FBA6 /* Services */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -223,6 +275,7 @@
 		04C892F32209D75600A1FBA6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0423D5142234089B007E429D /* Trax */,
 				04C892F42209D75600A1FBA6 /* Currencies */,
 				04C892F82209D75600A1FBA6 /* AireFresco */,
 				04C892FE2209D75600A1FBA6 /* AFWithQueries */,
@@ -375,6 +428,7 @@
 				04C893092209D75600A1FBA6 /* NetworkingErrors.swift in Sources */,
 				04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */,
 				04C893042209D75600A1FBA6 /* Networking.swift in Sources */,
+				0423D51C22340ACC007E429D /* LoginCredentialsModel.swift in Sources */,
 				04C892E02209D72D00A1FBA6 /* JSONDecoder+SnakeCaseDecoder.swift in Sources */,
 				04C8930E2209D75600A1FBA6 /* SignUpBody.swift in Sources */,
 				04C893102209D75600A1FBA6 /* UserModel.swift in Sources */,
@@ -389,14 +443,17 @@
 				04C8930B2209D75600A1FBA6 /* CurrencyModel.swift in Sources */,
 				04D95A5422256CC000B25E19 /* GooglePlaceDetailsModel.swift in Sources */,
 				04C8930A2209D75600A1FBA6 /* CurrencyService.swift in Sources */,
-				04C893072209D75600A1FBA6 /* MyRequest.swift in Sources */,
+				04C893072209D75600A1FBA6 /* CustomRequest.swift in Sources */,
 				04C8930C2209D75600A1FBA6 /* CurrencyEndpoint.swift in Sources */,
+				0423D51A22340A93007E429D /* LoginService.swift in Sources */,
 				04C893112209D75600A1FBA6 /* AireFrescoTestEndpoint.swift in Sources */,
 				04C892E12209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift in Sources */,
+				0423D51822340962007E429D /* LoginEndpoint.swift in Sources */,
 				04C8930F2209D75600A1FBA6 /* SignInBody.swift in Sources */,
 				0423D5132233DA3D007E429D /* ViewController.swift in Sources */,
 				04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */,
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
+				0423D51E22340BB8007E429D /* TraxUserModel.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
 				045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */,

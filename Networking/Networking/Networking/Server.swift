@@ -48,6 +48,10 @@ extension Server {
         return .init(GoogleAPIsServer())
     }
     
+    static var traxServer: Server {
+        return .init(TraxServer())
+    }
+    
 //    static var test: Server {
 //        return .init(TestServer())
 //    }
@@ -82,6 +86,16 @@ struct GoogleAPIsServer: ServerInterface {
     
     var host: String {
         return "maps.googleapis.com"
+    }
+}
+
+struct TraxServer: ServerInterface {
+    var scheme: ServerScheme {
+        return .http
+    }
+    
+    var host: String {
+        return "traxapp.io"
     }
 }
 

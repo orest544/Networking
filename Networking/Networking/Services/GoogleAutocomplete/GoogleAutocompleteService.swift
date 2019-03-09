@@ -14,7 +14,7 @@ struct GoogleAutocompleteService: RequestPerformable {
     func getGoogleAutocomplete(with queries: GoogleAutocompleteQueries) -> Future<GoogleAutocompleteModel, NetworkingError> {
         
         let getAutocompleteEndpoint = GoogleAutocompleteEndpoint.getAutocomplete(queries: queries)
-        let getAutocompleteRequest = MyRequest(endpoint: getAutocompleteEndpoint)
+        let getAutocompleteRequest = CustomRequest(endpoint: getAutocompleteEndpoint)
         
         return performDataTask(with: getAutocompleteRequest,
                                logsEnable: true)

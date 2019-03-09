@@ -1,5 +1,5 @@
 //
-//  MyRequest.swift
+//  CustomRequest.swift
 //  Currency convertor
 //
 //  Created by Orest Patlyka on 1/14/19.
@@ -10,7 +10,7 @@ import Foundation
 
 typealias Endpoint = RequestContructable & URLConstructable
 
-struct MyRequest: RequestCreatable {
+struct CustomRequest: RequestCreatable {
     
     var endpoint: Endpoint
     var body: Encodable?

@@ -14,9 +14,9 @@ struct AFWithQueriesService: RequestPerformable {
     func getPaymentPlans(queries: Encodable) -> Future<PaymentPlansModel, NetworkingError> {
         
         let endpoint = AFWithQueriesEndpoint.getPaymentPlans(queries: queries)
-        let request = MyRequest(endpoint: endpoint)
+        let request = CustomRequest(endpoint: endpoint)
         
         return performDataTask(with: request)
     }
-
+    
 }

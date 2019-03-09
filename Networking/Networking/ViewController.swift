@@ -20,52 +20,16 @@ class ViewController: UIViewController {
         return refresherView
     }()
     
+    // MARK: - Services
     let currencyService = CurrencyService()
     let aireFrescoTestService = AireFrescoTestService()
     let afWithQueriesService = AFWithQueriesService()
     let googlePlacesService = GoogleAutocompleteService()
+    let traxAuthService = LoginService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpRefresherView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let queries = GetPaymentPlansQuery(countryCode: "VEN",
-                                           coupon: "fnPyrogI")
-        afWithQueriesService.getPaymentPlans(queries: queries)
-            .onSuccess { (paymentPlans) in
-                print(paymentPlans)
-            }.onFailure { (error) in
-                print(error.localizedDescription)
-            }
-
-        afWithQueriesService.getPaymentPlans(queries: queries)
-            .onSuccess { (paymentPlans) in
-                print(paymentPlans)
-            }.onFailure { (error) in
-                print(error.localizedDescription)
-            }
-
-        let changePasswordBody = ChangePasswordBody(newPassword: "Test1234",
-                                                    newPasswordConfirmation: "Test1234",
-                                                    currentPassword: "Test1234")
-
-        aireFrescoTestService.changePassword(with: changePasswordBody)
-            .onSuccess { _ in
-                print("Success!!")
-            }.onFailure { (error) in
-                print(error)
-            }
-
-        aireFrescoTestService.changePassword(with: changePasswordBody)
-            .onSuccess { _ in
-                print("Success!!")
-            }.onFailure { (error) in
-                print(error)
-            }
-
     }
     
     private func setUpRefresherView() {
@@ -181,6 +145,22 @@ extension ViewController {
                 print(error.description)
             }
     }
+    
+    @IBAction func logInTrax(_ sender: UIButton) {
+        showActivityIndication()
+        
+        let userCredentials = LoginCredentialsModel(email: "admin@trax.io",
+                                                    password: "secret")
+        
+        traxAuthService.logIn(with: userCredentials)
+            .onSuccess { (user) in
+                // save token in keychain
+                //KeychainManager.saveTokenToKeychain(0, token: "")
+                print(user)
+            }.onFailure { (error) in
+                print(error)
+            }
+    }
 
     @IBAction func resumeTasks(_ sender: UIButton) {
 //        DataTasksStorage.tasks.forEach {
@@ -191,7 +171,7 @@ extension ViewController {
         let queries = GetPaymentPlansQuery(countryCode: "VEN",
                                            coupon: "fnPyrogI")
         let endpoint = AFWithQueriesEndpoint.getPaymentPlans(queries: queries)
-        let request = MyRequest(endpoint: endpoint)
+        let request = CustomRequest(endpoint: endpoint)
         
         let urlRequest = request.asURLRequest()
         
