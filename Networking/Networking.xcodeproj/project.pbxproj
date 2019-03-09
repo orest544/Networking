@@ -131,14 +131,13 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		0423D5142234089B007E429D /* Trax */ = {
+		0401D61C2234112D00AF4787 /* Trax */ = {
 			isa = PBXGroup;
 			children = (
 				0423D515223408C9007E429D /* Auth */,
 				0423D516223408FF007E429D /* Settings */,
 			);
-			name = Trax;
-			path = GoogleAutocomplete;
+			path = Trax;
 			sourceTree = "<group>";
 		};
 		0423D515223408C9007E429D /* Auth */ = {
@@ -150,6 +149,7 @@
 				0401D61B2234100F00AF4787 /* Models */,
 			);
 			name = Auth;
+			path = GoogleAutocomplete;
 			sourceTree = "<group>";
 		};
 		0423D516223408FF007E429D /* Settings */ = {
@@ -275,7 +275,7 @@
 		04C892F32209D75600A1FBA6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0423D5142234089B007E429D /* Trax */,
+				0401D61C2234112D00AF4787 /* Trax */,
 				04C892F42209D75600A1FBA6 /* Currencies */,
 				04C892F82209D75600A1FBA6 /* AireFresco */,
 				04C892FE2209D75600A1FBA6 /* AFWithQueries */,
