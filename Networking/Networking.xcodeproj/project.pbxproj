@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0423D5132233DA3D007E429D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5122233DA3D007E429D /* ViewController.swift */; };
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */; };
 		04C892C12209D55E00A1FBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C892BF2209D55E00A1FBA6 /* Main.storyboard */; };
@@ -41,7 +42,6 @@
 		04C893132209D75600A1FBA6 /* AFWithQueriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893002209D75600A1FBA6 /* AFWithQueriesEndpoint.swift */; };
 		04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */; };
 		04C893152209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */; };
-		04C893172209D76400A1FBA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C893162209D76400A1FBA6 /* ViewController.swift */; };
 		04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */; };
 		04D95A5422256CC000B25E19 /* GooglePlaceDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */; };
 		04D95A5622256CEE00B25E19 /* GoogleAutocompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */; };
@@ -50,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0423D5122233DA3D007E429D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		04C892B82209D55E00A1FBA6 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		04C893002209D75600A1FBA6 /* AFWithQueriesEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWithQueriesEndpoint.swift; sourceTree = "<group>"; };
 		04C893012209D75600A1FBA6 /* AFWithQueriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWithQueriesService.swift; sourceTree = "<group>"; };
 		04C893022209D75600A1FBA6 /* GetPaymentPlansQueriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPaymentPlansQueriesModel.swift; sourceTree = "<group>"; };
-		04C893162209D76400A1FBA6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../../../Currency convertor/Currency convertor/ViewController.swift"; sourceTree = "<group>"; };
 		04D95A51222567E900B25E19 /* GoogleAutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteEndpoint.swift; sourceTree = "<group>"; };
 		04D95A5322256CC000B25E19 /* GooglePlaceDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceDetailsModel.swift; sourceTree = "<group>"; };
 		04D95A5522256CEE00B25E19 /* GoogleAutocompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteModel.swift; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 				04C892D32209D72D00A1FBA6 /* Extensions */,
 				04C892E22209D74D00A1FBA6 /* Helpers */,
 				04C892EA2209D75600A1FBA6 /* Networking */,
-				04C893162209D76400A1FBA6 /* ViewController.swift */,
 				04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */,
+				0423D5122233DA3D007E429D /* ViewController.swift */,
 				04C892BF2209D55E00A1FBA6 /* Main.storyboard */,
 				04C892C22209D55F00A1FBA6 /* Assets.xcassets */,
 				04C892C42209D55F00A1FBA6 /* LaunchScreen.storyboard */,
@@ -377,7 +377,6 @@
 				04C893042209D75600A1FBA6 /* Networking.swift in Sources */,
 				04C892E02209D72D00A1FBA6 /* JSONDecoder+SnakeCaseDecoder.swift in Sources */,
 				04C8930E2209D75600A1FBA6 /* SignUpBody.swift in Sources */,
-				04C893172209D76400A1FBA6 /* ViewController.swift in Sources */,
 				04C893102209D75600A1FBA6 /* UserModel.swift in Sources */,
 				04D95A5822268A9D00B25E19 /* GoogleAutocompleteService.swift in Sources */,
 				04D95A5A22268B7B00B25E19 /* GoogleAutocompleteQueries.swift in Sources */,
@@ -395,6 +394,7 @@
 				04C893112209D75600A1FBA6 /* AireFrescoTestEndpoint.swift in Sources */,
 				04C892E12209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift in Sources */,
 				04C8930F2209D75600A1FBA6 /* SignInBody.swift in Sources */,
+				0423D5132233DA3D007E429D /* ViewController.swift in Sources */,
 				04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */,
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
