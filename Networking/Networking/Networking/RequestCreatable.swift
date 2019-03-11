@@ -22,6 +22,7 @@ extension RequestCreatable {
     
     func addStandartHeadersFor(request: inout URLRequest) {
         request.addValue("application/json", forHTTPHeaderField: "content-type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
     }
     
     func addAuthHeaderFor(request: inout URLRequest) {
