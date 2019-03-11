@@ -9,37 +9,8 @@
 import Foundation
 import BrightFutures
 
-//protocol Typed {
-//    associatedtype T
-//    var promise: Promise<T, NetworkingError> { set get }
-//}
-
-//struct MyPromise<T: Decodable>: Typed {
-//    var promise: Promise<T, NetworkingError>
-//}
-
-//struct RequestDetails {
-//    let request: RequestCreatable
-//    var promise: AnyObject
-//    let type: Any.Type
-//}
-//
-//struct RequestDetailsStorage {
-//    static var dict = [URLSessionDataTask: RequestDetails]()
-//}
-
-//struct PromiseStorage<ParsedType: Decodable> {
-//    var currentPromise: Promise<ParsedType, NetworkingError>?
-//}
-
-
-fileprivate struct EmptyType: Encodable {
-    
-}
-
-struct EmptyResult: Decodable {
-    
-}
+fileprivate struct EmptyType: Encodable { }
+struct EmptyResult: Decodable { }
 
 // TEST
 struct URLSessionDetails {
@@ -51,18 +22,6 @@ struct URLSessionDetails {
 enum DataTaskDetailsStorage {
     static var detailsDict = [URLSessionDataTask: URLSessionDetails]()
 }
-
-// NOTE: This is for having access to dataTask inside in completion handler
-//struct CurrentDataTaskStorage {
-//    static var dataTask: URLSessionDataTask?
-//}
-
-//
-//enum DataTasksStorage {
-//    static var tasks = [URLSessionDataTask]()
-//    static var tempTasks = [URLSessionDataTask]()
-//}
-
 
 protocol RequestPerformable {
     var session: URLSession { get }

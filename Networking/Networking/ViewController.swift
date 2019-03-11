@@ -183,19 +183,7 @@ extension ViewController {
     }
 
     @IBAction func resumeTasks(_ sender: UIButton) {
-//        DataTasksStorage.tasks.forEach {
-//            $0.resume()
-//        }
-//
         
-        let queries = GetPaymentPlansQuery(countryCode: "VEN",
-                                           coupon: "fnPyrogI")
-        let endpoint = AFWithQueriesEndpoint.getPaymentPlans(queries: queries)
-        let request = MyRequest(endpoint: endpoint)
-        
-        let urlRequest = request.asURLRequest()
-        
-        //URLSession.shared.dataTask(with: urlRequest, completionHandler: CompletionHandlerStorage.handlers.first!).resume()
     }
     
     @IBAction func cancelTasks(_ sender: UIButton) {
