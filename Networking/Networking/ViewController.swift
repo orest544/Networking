@@ -194,14 +194,14 @@ extension ViewController {
                 print(paymentPlans)
             }.onFailure { (error) in
                 print(error.localizedDescription)
-        }
+            }
         
         afWithQueriesService.getPaymentPlans(queries: queries)
             .onSuccess { (paymentPlans) in
                 print(paymentPlans)
             }.onFailure { (error) in
                 print(error.localizedDescription)
-        }
+            }
         
         let changePasswordBody = ChangePasswordBody(newPassword: "Test1234",
                                                     newPasswordConfirmation: "Test1234",
@@ -212,16 +212,15 @@ extension ViewController {
                 print("Success!!")
             }.onFailure { (error) in
                 print(error)
-        }
+            }
         
         aireFrescoTestService.changePassword(with: changePasswordBody)
             .onSuccess { _ in
                 print("Success!!")
             }.onFailure { (error) in
                 print(error)
-        }
+            }
 
     }
-    
     
 }

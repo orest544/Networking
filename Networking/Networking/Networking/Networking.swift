@@ -9,14 +9,15 @@
 import Foundation
 import BrightFutures
 
+typealias DataTaskCompletionHandler = (Data?, URLResponse?, Error?) -> Void
+
 fileprivate struct EmptyType: Encodable { }
 struct EmptyResult: Decodable { }
 
 // TEST
 struct URLSessionDetails {
     let request: RequestCreatable
-    // TODO: Need typealias
-    let handler: (Data?, URLResponse?, Error?) -> Void
+    let handler: DataTaskCompletionHandler
 }
 
 enum DataTaskDetailsStorage {
@@ -33,7 +34,15 @@ extension RequestPerformable {
     
     // MARK: - Stuff
     var session: URLSession {
-        return URLSession.shared
+        // NOTE: Available from iOS 11
+        let configuration = URLSessionConfiguration.default
+        if #available(iOS 11.0, *) {
+            configuration.waitsForConnectivity = true
+            configuration.timeoutIntervalForResource = 10
+        } else {
+            // Fallback on earlier versions
+        }
+        return URLSession.shared//URLSession(configuration: configuration)
     }
     
     var decoder: JSONDecoder {
@@ -46,7 +55,7 @@ extension RequestPerformable {
       
         let promise = Promise<ParsedType, NetworkingError>()
         
-        let completionHandler: (Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
+        let completionHandler: DataTaskCompletionHandler = { (data, response, error) in
             /// Handle Error
             if let networkingError = self.handleError(error) {
                 // TEST
@@ -60,12 +69,20 @@ extension RequestPerformable {
                         return nil
                     })
                     
+                    let keys2 = DataTaskDetailsStorage
+                        .detailsDict
+                        .enumerated()
+                        .filter { $0.element.value.request === request }
+                    keys2.forEach {
+                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: $0.element.key)
+                    }
+                    
                     keys.forEach({ (urlSessionDataTask) in
                         DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
                     })
+                    
+                    return promise.failure(networkingError)
                 }
-        
-                return promise.failure(networkingError)
             }
             
             /// Check data and response
@@ -301,9 +318,10 @@ extension RequestPerformable {
     }
     
     // TEST
-    private func testApiCall(with urlRequest: URLRequest, and completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    private func testApiCall(with urlRequest: URLRequest, and completionHandler: @escaping DataTaskCompletionHandler) {
         session.dataTask(with: urlRequest, completionHandler: completionHandler).resume()
     }
+    
 }
 
 
