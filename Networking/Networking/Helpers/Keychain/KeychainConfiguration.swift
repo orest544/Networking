@@ -9,5 +9,5 @@
 import Foundation
 
 struct KeychainConfiguration {
-    static let serviceName = "AireFresco"
+    static let serviceName = "Trax"
 }

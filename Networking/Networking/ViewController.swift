@@ -76,7 +76,7 @@ extension ViewController {
         aireFrescoTestService.signIn(with: credentials)
             .onSuccess { user in
                 print(user)
-                let result = KeychainManager.saveTokenToKeychain(user.id,
+                let result = KeychainManager.saveTokenToKeychain(id: String(user.id),
                                                                  token: user.meta.token)
                 // handle result, mb log out
                 print("Saving token to keychain: ", result)
@@ -157,7 +157,7 @@ extension ViewController {
             .onSuccess { (user) in
                 // save token in keychain
                 let token = user.data.tokenType + " " + user.data.accessToken
-                KeychainManager.saveTokenToKeychain(idString: userCredentials.email,
+                KeychainManager.saveTokenToKeychain(id: userCredentials.email,
                                                     token: token)
                 
                 UserDefaults.standard.set(userCredentials.email, forKey: "userID")

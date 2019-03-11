@@ -29,7 +29,7 @@ extension RequestCreatable {
         
         // NOTE: Retrieve token, customize for your porposes
         let userID = UserDefaults.standard.string(forKey: "userID")
-        let token = KeychainManager.readTokenFromKeychain(idString: userID)
+        let token = KeychainManager.readTokenFromKeychain(id: userID ?? "")
         
         request.setValue(token, forHTTPHeaderField: "Authorization")
     }
