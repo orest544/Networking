@@ -34,15 +34,13 @@ extension RequestPerformable {
     
     // MARK: - Stuff
     var session: URLSession {
-        // NOTE: Available from iOS 11
         let configuration = URLSessionConfiguration.default
         if #available(iOS 11.0, *) {
-            configuration.waitsForConnectivity = true
-            configuration.timeoutIntervalForResource = 10
-        } else {
-            // Fallback on earlier versions
+            // wait for conection restoring
+            configuration.waitsForConnectivity = NetworkingSettings.waitsForConnectivity
+            configuration.timeoutIntervalForResource = NetworkingSettings.timeoutIntervalForResource
         }
-        return URLSession.shared//URLSession(configuration: configuration)
+        return URLSession(configuration: configuration) //URLSession.shared
     }
     
     var decoder: JSONDecoder {
@@ -69,17 +67,18 @@ extension RequestPerformable {
                         return nil
                     })
                     
+                    keys.forEach({ (urlSessionDataTask) in
+                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+                    })
+                    
                     let keys2 = DataTaskDetailsStorage
                         .detailsDict
                         .enumerated()
                         .filter { $0.element.value.request === request }
+                    
                     keys2.forEach {
                         DataTaskDetailsStorage.detailsDict.removeValue(forKey: $0.element.key)
                     }
-                    
-                    keys.forEach({ (urlSessionDataTask) in
-                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                    })
                     
                     return promise.failure(networkingError)
                 }

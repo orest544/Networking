@@ -79,7 +79,7 @@ extension RequestCreatable {
         }
         
         // Additional request settings
-        urlRequest.timeoutInterval = 10
+        urlRequest.timeoutInterval = NetworkingSettings.requestTimeout
         
         return urlRequest
     }

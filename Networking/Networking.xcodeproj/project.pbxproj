@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043AD93A2237BF8B00197CFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AD9392237BF8B00197CFF /* Configuration.swift */; };
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		047AA5C7222D1D6E00B9F0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C6222D1D6E00B9F0DA /* ViewController.swift */; };
 		047AA5C9222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043AD9392237BF8B00197CFF /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		047AA5C6222D1D6E00B9F0DA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+RenewTokenInHeader.swift"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				04CA27A82227E7FE006E3FE0 /* RefreshTokenService */,
+				043AD9392237BF8B00197CFF /* Configuration.swift */,
 				04C892F12209D75600A1FBA6 /* HTTPMethod.swift */,
 				04C892F22209D75600A1FBA6 /* NetworkingErrors.swift */,
 				04C892EF2209D75600A1FBA6 /* Server.swift */,
@@ -419,6 +422,7 @@
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
 				04CA27AA2227E817006E3FE0 /* RefreshTokenEndpoint.swift in Sources */,
+				043AD93A2237BF8B00197CFF /* Configuration.swift in Sources */,
 				045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */,
 				04C893032209D75600A1FBA6 /* RequestCreatable.swift in Sources */,
 				04C892DE2209D72D00A1FBA6 /* Error+NSErrorFeatures.swift in Sources */,
