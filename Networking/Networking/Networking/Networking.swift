@@ -97,7 +97,7 @@ extension RequestPerformable {
                 return self.handeBadResponse(with: data, andGivePromiseFor: promise)
             }
             
-            /// Check if needed only true or false (if response have an empty JSON, and we need only checking status code)
+            /// Check if needed only success or failure (if response have an empty JSON, and we need only checking status code)
             guard "\(ParsedType.self)" != "EmptyResult" else {
                 let emptyResult = self.getEmptyResult(parsedType: ParsedType.self)
                 // TEST
@@ -178,7 +178,7 @@ extension RequestPerformable {
         if let json = getJSONFrom(data: request.asURLRequest().httpBody ?? Data()) {
             print("\nBODY JSON: ", json)
         }
-    
+        
         print("\nFinal URL: \(request.endpoint.asURL())")
         print("Response code: \(response.statusCode) (\(ParsedType.self))" )
         
@@ -234,32 +234,24 @@ extension RequestPerformable {
         
         session.dataTask(with: refreshTokenRequest.asURLRequest()) { (data, response, error) in
             guard error == nil else {
-                print("Refreshing token error \(error?.localizedDescription)")
+                print("Refreshing token error: \(error?.localizedDescription)")
                 RefreshTokenHandler.handleFailure()
                 return
             }
             
-            guard let response = response as? HTTPURLResponse else {
-                print("Refreshing token bad response")
+            guard let response = response as? HTTPURLResponse, data != nil else {
+                print("Refreshing token invalid response or data")
                 RefreshTokenHandler.handleFailure()
                 return
             }
             
-            // TODO: Think about this hardcode
-            guard response.statusCode == 200 else {
+            guard response.isStatusCodeInOkRange else {
                 print("Refreshing token bad statusCode: \(response.statusCode)")
                 RefreshTokenHandler.handleFailure()
                 return
             }
             
-            guard data != nil else {
-                print("Refreshing token bad data, data: \(String(describing: data))")
-                RefreshTokenHandler.handleFailure()
-                return
-            }
-            
-            // TODO: Remove hardcode
-            if let newToken = response.allHeaderFields["Authorization"] as? String {
+            if let newToken = response.allHeaderFields[RefreshTokenSettings.fieldName] as? String {
                 guard RefreshTokenHandler.handleSuccess(with: newToken) else {
                     print("cant save token to keychain and returning from refresh token")
                     RefreshTokenHandler.handleFailure()
@@ -267,20 +259,15 @@ extension RequestPerformable {
                 }
                 
                 print("calling api againg after refreshing")
-                #warning("Call all request again")
                 
                 let urlSessionDetails = DataTaskDetailsStorage.detailsDict.values
                 urlSessionDetails.forEach {
-                    self.testApiCall(with: $0.request.asURLRequest(), and: $0.handler)
+                    self.session.dataTask(with: $0.request.asURLRequest(),
+                                          completionHandler: $0.handler).resume()
                 }
-                
             }
         }.resume()
-    }
     
-    // TEST
-    private func testApiCall(with urlRequest: URLRequest, and completionHandler: @escaping DataTaskCompletionHandler) {
-        session.dataTask(with: urlRequest, completionHandler: completionHandler).resume()
     }
     
 }

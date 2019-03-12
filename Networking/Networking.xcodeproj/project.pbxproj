@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040AC2682237CF52003226C7 /* CustomPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040AC2672237CF52003226C7 /* CustomPrint.swift */; };
 		043AD93A2237BF8B00197CFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AD9392237BF8B00197CFF /* Configuration.swift */; };
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		047AA5C7222D1D6E00B9F0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C6222D1D6E00B9F0DA /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040AC2672237CF52003226C7 /* CustomPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPrint.swift; sourceTree = "<group>"; };
 		043AD9392237BF8B00197CFF /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		047AA5C6222D1D6E00B9F0DA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				04C892E32209D74D00A1FBA6 /* Keychain */,
+				040AC2672237CF52003226C7 /* CustomPrint.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				04C893112209D75600A1FBA6 /* AireFrescoTestEndpoint.swift in Sources */,
 				04C892E12209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift in Sources */,
 				04C8930F2209D75600A1FBA6 /* SignInBody.swift in Sources */,
+				040AC2682237CF52003226C7 /* CustomPrint.swift in Sources */,
 				04D95A52222567E900B25E19 /* GoogleAutocompleteEndpoint.swift in Sources */,
 				04C893142209D75600A1FBA6 /* AFWithQueriesService.swift in Sources */,
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,

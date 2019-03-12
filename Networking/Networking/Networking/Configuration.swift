@@ -14,3 +14,7 @@ enum NetworkingSettings {
     static let waitsForConnectivity = true
     static let timeoutIntervalForResource: TimeInterval = 30
 }
+
+enum RefreshTokenSettings {
+    static let fieldName = "Authorization"
+}

@@ -8,10 +8,6 @@
 
 import Foundation
 
-class EmptyObj {
-    
-}
-
 protocol RequestCreatable: AnyObject {
     var endpoint: Endpoint { get set }
     var body: Encodable? { get set }
@@ -69,7 +65,7 @@ extension RequestCreatable {
                 assert(false, "Can't add parameters for request")
             }
         }
-        
+       
         // Additional request settings
         urlRequest.timeoutInterval = NetworkingSettings.requestTimeout
         
