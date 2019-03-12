@@ -10,6 +10,7 @@ import Foundation
 
 typealias Endpoint = RequestContructable & URLConstructable
 
+/// Need class type for compare references
 class MyRequest: RequestCreatable {
     
     var endpoint: Endpoint

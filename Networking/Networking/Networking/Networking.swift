@@ -60,26 +60,8 @@ extension RequestPerformable {
                 switch networkingError {
                 case .canceled: break
                 default:
-                    let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
-                        if value.request === request {
-                            return key
-                        }
-                        return nil
-                    })
-                    
-                    keys.forEach({ (urlSessionDataTask) in
-                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                    })
-                    
-                    let keys2 = DataTaskDetailsStorage
-                        .detailsDict
-                        .enumerated()
-                        .filter { $0.element.value.request === request }
-                    
-                    keys2.forEach {
-                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: $0.element.key)
-                    }
-                    
+                    self.removeRequestFromStorage(request: request)
+                    // TODO: Think about returnin value when .cancel
                     return promise.failure(networkingError)
                 }
             }
@@ -90,16 +72,7 @@ extension RequestPerformable {
                     // TODO: Handle error
                     print("Smth goes wrong")
                     // TEST
-                    let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
-                        if value.request === request {
-                            return key
-                        }
-                        return nil
-                    })
-                    
-                    keys.forEach({ (urlSessionDataTask) in
-                        DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                    })
+                    self.removeRequestFromStorage(request: request)
                     return promise.failure(NetworkingError.badData)
             }
             
@@ -120,16 +93,7 @@ extension RequestPerformable {
                 return
             case .bad:
                 // TEST
-                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
-                    if value.request === request {
-                        return key
-                    }
-                    return nil
-                })
-                
-                keys.forEach({ (urlSessionDataTask) in
-                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                })
+                self.removeRequestFromStorage(request: request)
                 return self.handeBadResponse(with: data, andGivePromiseFor: promise)
             }
             
@@ -137,16 +101,7 @@ extension RequestPerformable {
             guard "\(ParsedType.self)" != "EmptyResult" else {
                 let emptyResult = self.getEmptyResult(parsedType: ParsedType.self)
                 // TEST
-                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
-                    if value.request === request {
-                        return key
-                    }
-                    return nil
-                })
-                
-                keys.forEach({ (urlSessionDataTask) in
-                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                })
+                self.removeRequestFromStorage(request: request)
                 return promise.success(emptyResult)
             }
             
@@ -154,31 +109,13 @@ extension RequestPerformable {
             do {
                 let parsedData = try self.decoder.decode(ParsedType.self, from: data)
                 // TEST
-                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
-                    if value.request === request {
-                        return key
-                    }
-                    return nil
-                })
-                
-                keys.forEach({ (urlSessionDataTask) in
-                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                })
+                self.removeRequestFromStorage(request: request)
                 promise.success(parsedData)
             } catch let catchError {
                 // TODO: Handle error
                 print(catchError)
                 // TEST
-                let keys = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
-                    if value.request === request {
-                        return key
-                    }
-                    return nil
-                })
-                
-                keys.forEach({ (urlSessionDataTask) in
-                    DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
-                })
+                self.removeRequestFromStorage(request: request)
                 return promise.failure(NetworkingError.defaultError)
             }
         }
@@ -209,9 +146,8 @@ extension RequestPerformable {
     
     private func checkErrorInResponse(data: Data) -> NetworkingError? {
         do {
-            // TODO: Remove force unwrap
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            if let error = json["error"] as? String {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            if let error = json?["error"] as? String {
                 return NetworkingError.responseError(error)
             }
         } catch {
@@ -233,6 +169,7 @@ extension RequestPerformable {
         return promise.failure(NetworkingError.defaultError)
     }
     
+    // TODO: Move to extension or separate file
     // MARK: - LOGs
     private func printLogs<ParsedType: Decodable>(with request: RequestCreatable,
                                                   response: HTTPURLResponse,
@@ -267,6 +204,20 @@ extension RequestPerformable {
         let data = try! emptyEncodedObj.myData()
         
         return try! self.decoder.decode(ParsedType.self, from: data)
+    }
+    
+    // MARK: - Handle DataTaskDetailsStorage
+    private func removeRequestFromStorage(request: RequestCreatable) {
+        let urlSessionDataTasks = DataTaskDetailsStorage.detailsDict.compactMap({ (key, value) -> URLSessionDataTask? in
+            if value.request === request {
+                return key
+            }
+            return nil
+        })
+        
+        urlSessionDataTasks.forEach({ (urlSessionDataTask) in
+            DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
+        })
     }
     
 }

@@ -13,14 +13,8 @@ class EmptyObj {
 }
 
 protocol RequestCreatable: AnyObject {
-
-//    var endpoint: URL { get set }
-//    var method: HTTPMethod { get }
-//    var authToken: String { get }
     var endpoint: Endpoint { get set }
     var body: Encodable? { get set }
-    //var pointer: EmptyObj { get }
-    //var encoder: JSONEncoder { get }
     
     func addStandartHeadersFor(request: inout URLRequest)
     func addParametersFor(request: inout URLRequest, parameters: Encodable) throws
