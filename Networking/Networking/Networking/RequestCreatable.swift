@@ -46,9 +46,7 @@ extension RequestCreatable {
     func addParametersFor(request: inout URLRequest, parameters: Encodable) throws {
         do {
             let data = try parameters.myData()
-            let json = try JSONSerialization.jsonObject(with: data, options: [])
-            print("\nBODY JSON: ", json)
-            request.httpBody = data//try parameters.myData()
+            request.httpBody = data
         } catch {
             // TODO: MAKE SPECIAL ERROR
             throw NetworkingError.defaultError

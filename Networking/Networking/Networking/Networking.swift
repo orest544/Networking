@@ -238,14 +238,25 @@ extension RequestPerformable {
                                                   response: HTTPURLResponse,
                                                   parsedType: ParsedType.Type,
                                                   data: Data) {
+        if let json = getJSONFrom(data: request.asURLRequest().httpBody ?? Data()) {
+            print("\nBODY JSON: ", json)
+        }
+    
         print("\nFinal URL: \(request.endpoint.asURL())")
         print("Response code: \(response.statusCode) (\(ParsedType.self))" )
         
+        if let json = getJSONFrom(data: data) {
+            print("RESPONSE JSON: ", json)
+        }
+    }
+    
+    private func getJSONFrom(data: Data) -> Any? {
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: [])
-            print("RESPONSE JSON: ", json)
+            return json
         } catch {
             print(error.localizedDescription)
+            return nil
         }
     }
     
