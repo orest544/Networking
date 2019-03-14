@@ -61,7 +61,7 @@ extension RequestCreatable {
                 try addParametersFor(request: &urlRequest, parameters: body)
             } catch {
                 // TODO: MAKE SPECIAL ERROR
-                print("Error in asURLRequest: ", error.localizedDescription)
+                optimizedPrint("Error in asURLRequest: \(error.localizedDescription)")
                 assert(false, "Can't add parameters for request")
             }
         }

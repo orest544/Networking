@@ -27,8 +27,6 @@ enum AFWithQueriesEndpoint: Endpoint {
         switch self {
         case .getPaymentPlans(let queries):
             return queries
-        default:
-            return nil
         }
     }
     
@@ -43,8 +41,6 @@ enum AFWithQueriesEndpoint: Endpoint {
         switch self {
         case .getPaymentPlans:
             return true
-        default:
-            return false
         }
     }
 

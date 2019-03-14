@@ -26,7 +26,7 @@ extension Encodable {
             let encoder = JSONEncoder.snakeCaseEncoder()
             return try encoder.encode(self)
         } catch {
-            print(error.localizedDescription)
+            optimizedPrint(error.localizedDescription)
             throw error
         }
     }

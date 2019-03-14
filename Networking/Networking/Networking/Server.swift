@@ -70,7 +70,8 @@ struct AFServer: ServerInterface {
     }
     
     var host: String {
-        return "aftestenv.airefresco.co" // TEST
+        return "afprodenv.airefresco.co" // PROD
+        // return "aftestenv.airefresco.co" // TEST
         // return "airfresko.tk" // DEV
     }
 }

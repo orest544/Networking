@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     let aireFrescoTestService = AireFrescoTestService()
     let afWithQueriesService = AFWithQueriesService()
     let googlePlacesService = GoogleAutocompleteService()
+    let downloadService = TestDownloadService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         let queries = GetPaymentPlansQuery(countryCode: "VEN",
                                            coupon: "fnPyrogI")
         afWithQueriesService.getPaymentPlans(queries: queries)
@@ -114,7 +116,7 @@ extension ViewController {
                 let result = KeychainManager.saveTokenToKeychain(user.id,
                                                                  token: user.meta.token)
                 // handle result, mb log out
-                print("Saving token to keychain: ", result)
+                print("Saving token to keychain: \(result)")
                 
                 UserDefaults.standard.set(user.id, forKey: "userID")
             }.onFailure { error in
@@ -182,6 +184,12 @@ extension ViewController {
             }
     }
 
+    @IBAction func download(_ sender: UIButton) {
+        showActivityIndication()
+        
+        downloadService.downloadSession()
+    }
+    
     @IBAction func resumeTasks(_ sender: UIButton) {
         
     }

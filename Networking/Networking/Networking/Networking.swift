@@ -52,6 +52,7 @@ extension RequestPerformable {
                                                 logsEnable: Bool = false) -> Future<ParsedType, NetworkingError> {
       
         let promise = Promise<ParsedType, NetworkingError>()
+        let urlRequest = request.asURLRequest()
         
         let completionHandler: DataTaskCompletionHandler = { (data, response, error) in
             /// Handle Error
@@ -78,7 +79,7 @@ extension RequestPerformable {
             
             /// LOGs
             if logsEnable {
-                self.printLogs(with: request,
+                self.printLogs(with: urlRequest,
                                response: response,
                                parsedType: ParsedType.self,
                                data: data)
@@ -88,7 +89,7 @@ extension RequestPerformable {
             switch response.validateStatusCode() {
             case .good: break
             case .refresh:
-                print("make refresh")
+                optimizedPrint("making refresh token")
                 self.refreshToken()
                 return
             case .bad:
@@ -120,7 +121,7 @@ extension RequestPerformable {
             }
         }
         
-        let dataTask = session.dataTask(with: request.asURLRequest(), completionHandler: completionHandler)
+        let dataTask = session.dataTask(with: urlRequest, completionHandler: completionHandler)
         dataTask.resume()
         
         DataTaskDetailsStorage.detailsDict[dataTask] = URLSessionDetails(request: request,
@@ -171,19 +172,19 @@ extension RequestPerformable {
     
     // TODO: Move to extension or separate file
     // MARK: - LOGs
-    private func printLogs<ParsedType: Decodable>(with request: RequestCreatable,
+    private func printLogs<ParsedType: Decodable>(with request: URLRequest,
                                                   response: HTTPURLResponse,
                                                   parsedType: ParsedType.Type,
                                                   data: Data) {
-        if let json = getJSONFrom(data: request.asURLRequest().httpBody ?? Data()) {
-            print("\nBODY JSON: ", json)
+        optimizedPrint("\nFinal URL: \(request.url ?? URL(fileURLWithPath: ""))")
+        optimizedPrint("Response code: \(response.statusCode) (\(ParsedType.self))" )
+        
+        if let json = getJSONFrom(data: request.httpBody ?? Data()) {
+            optimizedPrint("\nBODY JSON: \(json)")
         }
         
-        print("\nFinal URL: \(request.endpoint.asURL())")
-        print("Response code: \(response.statusCode) (\(ParsedType.self))" )
-        
         if let json = getJSONFrom(data: data) {
-            print("RESPONSE JSON: ", json)
+            optimizedPrint("RESPONSE JSON: \(json)")
         }
     }
     
@@ -192,7 +193,6 @@ extension RequestPerformable {
             let json = try JSONSerialization.jsonObject(with: data, options: [])
             return json
         } catch {
-            print(error.localizedDescription)
             return nil
         }
     }
@@ -234,31 +234,31 @@ extension RequestPerformable {
         
         session.dataTask(with: refreshTokenRequest.asURLRequest()) { (data, response, error) in
             guard error == nil else {
-                print("Refreshing token error: \(error?.localizedDescription)")
+                optimizedPrint("Refreshing token error: \(error?.localizedDescription)")
                 RefreshTokenHandler.handleFailure()
                 return
             }
             
             guard let response = response as? HTTPURLResponse, data != nil else {
-                print("Refreshing token invalid response or data")
+                optimizedPrint("Refreshing token invalid response or data")
                 RefreshTokenHandler.handleFailure()
                 return
             }
             
             guard response.isStatusCodeInOkRange else {
-                print("Refreshing token bad statusCode: \(response.statusCode)")
+                optimizedPrint("Refreshing token bad statusCode: \(response.statusCode)")
                 RefreshTokenHandler.handleFailure()
                 return
             }
             
             if let newToken = response.allHeaderFields[RefreshTokenSettings.fieldName] as? String {
                 guard RefreshTokenHandler.handleSuccess(with: newToken) else {
-                    print("cant save token to keychain and returning from refresh token")
+                    optimizedPrint("cant save token to keychain and returning from refresh token")
                     RefreshTokenHandler.handleFailure()
                     return
                 }
                 
-                print("calling api againg after refreshing")
+                optimizedPrint("calling api againg after refreshing")
                 
                 let urlSessionDetails = DataTaskDetailsStorage.detailsDict.values
                 urlSessionDetails.forEach {

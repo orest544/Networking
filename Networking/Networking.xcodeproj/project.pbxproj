@@ -12,6 +12,9 @@
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		047AA5C7222D1D6E00B9F0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C6222D1D6E00B9F0DA /* ViewController.swift */; };
 		047AA5C9222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */; };
+		04B6F720223A5FF0007D01B8 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6F71F223A5FF0007D01B8 /* DownloadTask.swift */; };
+		04B6F722223A6657007D01B8 /* TestDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6F721223A6657007D01B8 /* TestDownloadService.swift */; };
+		04B6F725223A6671007D01B8 /* TestDownloadEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6F724223A6671007D01B8 /* TestDownloadEndpoint.swift */; };
 		04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */; };
 		04C892C12209D55E00A1FBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C892BF2209D55E00A1FBA6 /* Main.storyboard */; };
 		04C892C32209D55F00A1FBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C892C22209D55F00A1FBA6 /* Assets.xcassets */; };
@@ -60,6 +63,9 @@
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		047AA5C6222D1D6E00B9F0DA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+RenewTokenInHeader.swift"; sourceTree = "<group>"; };
+		04B6F71F223A5FF0007D01B8 /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		04B6F721223A6657007D01B8 /* TestDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDownloadService.swift; sourceTree = "<group>"; };
+		04B6F724223A6671007D01B8 /* TestDownloadEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDownloadEndpoint.swift; sourceTree = "<group>"; };
 		04C892B82209D55E00A1FBA6 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C892BB2209D55E00A1FBA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C892C02209D55E00A1FBA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 				04C892EB2209D75600A1FBA6 /* RequestCreatable.swift */,
 				04C892F02209D75600A1FBA6 /* MyRequest.swift */,
 				04C892EC2209D75600A1FBA6 /* Networking.swift */,
+				04B6F71F223A5FF0007D01B8 /* DownloadTask.swift */,
 				04C892F32209D75600A1FBA6 /* Services */,
 			);
 			path = Networking;
@@ -241,6 +248,8 @@
 				04C892F82209D75600A1FBA6 /* AireFresco */,
 				04C892FE2209D75600A1FBA6 /* AFWithQueries */,
 				04D95A502225679500B25E19 /* GoogleAutocomplete */,
+				04B6F724223A6671007D01B8 /* TestDownloadEndpoint.swift */,
+				04B6F721223A6657007D01B8 /* TestDownloadService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -394,6 +403,7 @@
 			files = (
 				04C892DD2209D72D00A1FBA6 /* JSONEncoder+SnakeCaseEncoder.swift in Sources */,
 				04C8930D2209D75600A1FBA6 /* AireFrescoTestService.swift in Sources */,
+				04B6F725223A6671007D01B8 /* TestDownloadEndpoint.swift in Sources */,
 				04C893122209D75600A1FBA6 /* PaymentPlansModel.swift in Sources */,
 				04C893092209D75600A1FBA6 /* NetworkingErrors.swift in Sources */,
 				04C892BC2209D55E00A1FBA6 /* AppDelegate.swift in Sources */,
@@ -403,6 +413,7 @@
 				04C8930E2209D75600A1FBA6 /* SignUpBody.swift in Sources */,
 				04C893102209D75600A1FBA6 /* UserModel.swift in Sources */,
 				04D95A5822268A9D00B25E19 /* GoogleAutocompleteService.swift in Sources */,
+				04B6F722223A6657007D01B8 /* TestDownloadService.swift in Sources */,
 				047AA5C9222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift in Sources */,
 				04D95A5A22268B7B00B25E19 /* GoogleAutocompleteQueries.swift in Sources */,
 				04C892E82209D74D00A1FBA6 /* KeychainConfiguration.swift in Sources */,
@@ -418,6 +429,7 @@
 				04C893072209D75600A1FBA6 /* MyRequest.swift in Sources */,
 				04C8930C2209D75600A1FBA6 /* CurrencyEndpoint.swift in Sources */,
 				04C893112209D75600A1FBA6 /* AireFrescoTestEndpoint.swift in Sources */,
+				04B6F720223A5FF0007D01B8 /* DownloadTask.swift in Sources */,
 				04C892E12209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift in Sources */,
 				04C8930F2209D75600A1FBA6 /* SignInBody.swift in Sources */,
 				040AC2682237CF52003226C7 /* CustomPrint.swift in Sources */,

@@ -27,6 +27,7 @@ class AireFrescoTestService: NSObject, RequestPerformable {
     }
     
     // Empty Response
+    // TODO: Make typealias for returning type with EmptyRssult
     func changePassword(with newPasswordBody: ChangePasswordBody) -> Future<EmptyResult, NetworkingError> {
         
         let changePasswordRequest = MyRequest(endpoint: AireFrescoEndpoint.changePassword,

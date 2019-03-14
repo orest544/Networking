@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3lO-el-eXd">
-                                <rect key="frame" x="0.0" y="50" width="375" height="514"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3lO-el-eXd">
+                                <rect key="frame" x="0.0" y="50" width="375" height="438"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z54-Je-aWd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
@@ -32,7 +32,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFP-Sn-xfL">
-                                        <rect key="frame" x="0.0" y="68" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Sign in AF">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -42,7 +42,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39x-kw-ox1">
-                                        <rect key="frame" x="0.0" y="136" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="100" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Sign up AF">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HB6-Hy-QpH">
-                                        <rect key="frame" x="0.0" y="204" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="150" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Get payment plans">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDS-VC-vRP">
-                                        <rect key="frame" x="0.0" y="272" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="200" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Change password">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,7 +72,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHq-ce-szI">
-                                        <rect key="frame" x="0.0" y="340" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="250" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Get Google Autocomplete">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,8 +81,18 @@
                                             <action selector="getGoogleAutocomplete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6gk-WE-WWj"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ber-HQ-2NA">
+                                        <rect key="frame" x="0.0" y="300" width="375" height="38"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
+                                        <state key="normal" title="Download">
+                                            <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="download:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Odn-RP-pU4"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTE-ia-oyG">
-                                        <rect key="frame" x="0.0" y="408" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="350" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Resume tasks">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,7 +102,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hs8-l9-xkr">
-                                        <rect key="frame" x="0.0" y="476" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="400" width="375" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Cancel tasks">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
