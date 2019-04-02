@@ -40,7 +40,7 @@ BrightFutures 7.0 is now available! This update adds Swift 4.2 compatibility.
 ## Documentation
 - API documentation is available at the wonderful [cocoadocs.org](http://cocoadocs.org/docsets/BrightFutures)
 - This README covers almost all features of BrightFutures
-- The [tests](BrightFuturesTests) contain (trivial) usage examples for every feature (97% test coverage)
+- The [tests](Tests/BrightFuturesTests) contain (trivial) usage examples for every feature (97% test coverage)
 - The primary author, Thomas Visser, gave [a talk](https://www.youtube.com/watch?v=lgJT2KMMEmU) at the April 2015 CocoaHeadsNL meetup
 - The [Highstreet Watch App](https://github.com/GetHighstreet/HighstreetWatchApp) is an Open Source WatchKit app that makes extensive use of BrightFutures
 
@@ -262,6 +262,16 @@ fibonacciSequence.sequence().onSuccess { fibNumbers in
     i in fibonacciFuture(i)
 }.onSuccess { fibNumbers in
     // fibNumbers is an array of Ints: [1, 1, 2, 3, etc.]
+}
+```
+
+## Delay
+`delay` returns a new Future that will complete after waiting for the given interval with the result of the previous Future.
+To simplify working with `DispatchTime` and `DispatchTimeInterval`, we recommend to use this [extension](https://gist.github.com/Thomvis/b378f926b6e1a48973f694419ed73aca).
+
+```swift
+Future<Int, NoError>(value: 3).delay(2.seconds).andThen { result in
+    // execute after two additional seconds
 }
 ```
 
