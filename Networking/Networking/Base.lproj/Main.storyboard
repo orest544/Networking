@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3lO-el-eXd">
-                                <rect key="frame" x="0.0" y="50" width="375" height="438"/>
+                                <rect key="frame" x="30" y="50" width="315" height="502"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z54-Je-aWd">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Get currencies">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -32,7 +32,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFP-Sn-xfL">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="50" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Sign in AF">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -42,7 +42,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39x-kw-ox1">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="100" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Sign up AF">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HB6-Hy-QpH">
-                                        <rect key="frame" x="0.0" y="150" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="150" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Get payment plans">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDS-VC-vRP">
-                                        <rect key="frame" x="0.0" y="200" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="200" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Change password">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,7 +72,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHq-ce-szI">
-                                        <rect key="frame" x="0.0" y="250" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="250" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Get Google Autocomplete">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,7 +82,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ber-HQ-2NA">
-                                        <rect key="frame" x="0.0" y="300" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="300" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Download">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,8 +91,11 @@
                                             <action selector="download:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Odn-RP-pU4"/>
                                         </connections>
                                     </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bIe-cF-UnI">
+                                        <rect key="frame" x="0.0" y="350" width="315" height="2"/>
+                                    </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTE-ia-oyG">
-                                        <rect key="frame" x="0.0" y="350" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="364" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Resume tasks">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,7 +105,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hs8-l9-xkr">
-                                        <rect key="frame" x="0.0" y="400" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="414" width="315" height="38"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
                                         <state key="normal" title="Cancel tasks">
                                             <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -111,17 +114,57 @@
                                             <action selector="cancelTasks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pYb-DK-nuj"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-vx-i61">
+                                        <rect key="frame" x="0.0" y="464" width="315" height="38"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
+                                        <state key="normal" title="Upload photo">
+                                            <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="uploadPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ooa-63-5Jr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4iM-ct-Ctf">
+                                <rect key="frame" x="110.5" y="552" width="154" height="76"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="154" id="K5r-DD-Xc6"/>
+                                    <constraint firstAttribute="height" constant="76" id="Y75-TE-9XF"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piT-2S-yJA">
+                                <rect key="frame" x="117.5" y="636" width="140" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="L5c-3T-9lw"/>
+                                    <constraint firstAttribute="height" constant="20" id="Ypl-eI-AJU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
+                                <state key="normal" title="Select Photo">
+                                    <color key="titleColor" red="0.41960784309999999" green="0.55294117649999996" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Vh-KX-qW8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.15686274510000001" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3lO-el-eXd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qkO-jI-vm7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3lO-el-eXd" secondAttribute="trailing" id="qvY-4P-bbW"/>
+                            <constraint firstItem="piT-2S-yJA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jth-9z-vOx"/>
+                            <constraint firstItem="piT-2S-yJA" firstAttribute="top" secondItem="4iM-ct-Ctf" secondAttribute="bottom" constant="8" id="dsc-74-czn"/>
+                            <constraint firstItem="3lO-el-eXd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="qkO-jI-vm7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3lO-el-eXd" secondAttribute="trailing" constant="30" id="qvY-4P-bbW"/>
                             <constraint firstItem="3lO-el-eXd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="scW-bm-owW"/>
+                            <constraint firstItem="4iM-ct-Ctf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uPh-Df-Qb8"/>
+                            <constraint firstItem="4iM-ct-Ctf" firstAttribute="top" secondItem="3lO-el-eXd" secondAttribute="bottom" id="uvn-Gg-pd5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="4iM-ct-Ctf" id="QKe-Bd-w62"/>
+                        <outlet property="testProgressView" destination="bIe-cF-UnI" id="SWA-T5-nLe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

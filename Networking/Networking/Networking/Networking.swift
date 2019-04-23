@@ -11,7 +11,7 @@ import BrightFutures
 
 typealias DataTaskCompletionHandler = (Data?, URLResponse?, Error?) -> Void
 
-fileprivate struct EmptyType: Encodable { }
+struct EmptyType: Encodable { }
 struct EmptyResult: Decodable { }
 
 // TEST
@@ -24,28 +24,53 @@ enum DataTaskDetailsStorage {
     static var detailsDict = [URLSessionDataTask: URLSessionDetails]()
 }
 
-protocol RequestPerformable {
-    var session: URLSession { get }
-    var decoder: JSONDecoder { get }
+protocol BaseURLSessionConfiguration {
+    var baseConfiguration: URLSessionConfiguration { get }
 }
 
-// NOTE: -  MAYBE ADD ASSOTIATED VALUE TO A PROTOCOL
-extension RequestPerformable {
-    
-    // MARK: - Stuff
-    var session: URLSession {
+extension BaseURLSessionConfiguration {
+    var baseConfiguration: URLSessionConfiguration {
         let configuration = URLSessionConfiguration.default
         if #available(iOS 11.0, *) {
             // wait for conection restoring
             configuration.waitsForConnectivity = NetworkingSettings.waitsForConnectivity
             configuration.timeoutIntervalForResource = NetworkingSettings.timeoutIntervalForResource
         }
-        return URLSession(configuration: configuration) //URLSession.shared
+        return configuration
+    }
+}
+
+protocol BaseRequest: BaseURLSessionConfiguration {
+    var session: URLSession { get }
+    var decoder: JSONDecoder { get }
+}
+
+extension BaseRequest {
+    var session: URLSession {
+        return URLSession(configuration: baseConfiguration)
     }
     
     var decoder: JSONDecoder {
         return JSONDecoder.snakeCaseDecoder()
     }
+}
+
+protocol BaseDelegateRequest: URLSessionDelegate, BaseURLSessionConfiguration {
+    var sessionWithDelegate: URLSession { get }
+}
+
+extension BaseDelegateRequest {
+    var sessionWithDelegate: URLSession {
+        return URLSession(configuration: baseConfiguration,
+                          delegate: self,
+                          delegateQueue: nil)
+    }
+}
+
+protocol RequestPerformable: BaseRequest { }
+
+// NOTE: -  MAYBE ADD ASSOTIATED VALUE TO A PROTOCOL
+extension RequestPerformable {
     
     // MARK: - DataTask
     func performDataTask<ParsedType: Decodable>(with request: RequestCreatable,
@@ -69,7 +94,7 @@ extension RequestPerformable {
             
             /// Check data and response
             guard let data = data,
-                let response = response as? HTTPURLResponse else {
+                let response = response?.httpURLResponse else {
                     // TODO: Handle error
                     print("Smth goes wrong")
                     // TEST
@@ -215,6 +240,7 @@ extension RequestPerformable {
             return nil
         })
         
+        // TODO: Solve problem with this, can crash (access to the dictionary)
         urlSessionDataTasks.forEach({ (urlSessionDataTask) in
             DataTaskDetailsStorage.detailsDict.removeValue(forKey: urlSessionDataTask)
         })

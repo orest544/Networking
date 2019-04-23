@@ -9,10 +9,11 @@
 import Foundation
 
 enum NetworkingSettings {
-    static let requestTimeout: TimeInterval = 15
+    static let requestTimeout: TimeInterval = 30
+    static let downloadUploadRequestTimeout: TimeInterval = 120
     
     static let waitsForConnectivity = true
-    static let timeoutIntervalForResource: TimeInterval = 30
+    static let timeoutIntervalForResource: TimeInterval = 60
 }
 
 enum RefreshTokenSettings {

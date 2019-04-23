@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040AC2682237CF52003226C7 /* CustomPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040AC2672237CF52003226C7 /* CustomPrint.swift */; };
+		0433877A226DB37B009EE7D4 /* URLResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04338779226DB37B009EE7D4 /* URLResponse+HTTPURLResponse.swift */; };
 		043AD93A2237BF8B00197CFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043AD9392237BF8B00197CFF /* Configuration.swift */; };
 		045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B582622117EC90044951E /* ChangePasswordBody.swift */; };
 		047AA5C7222D1D6E00B9F0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AA5C6222D1D6E00B9F0DA /* ViewController.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		040AC2672237CF52003226C7 /* CustomPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPrint.swift; sourceTree = "<group>"; };
+		04338779226DB37B009EE7D4 /* URLResponse+HTTPURLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+HTTPURLResponse.swift"; sourceTree = "<group>"; };
 		043AD9392237BF8B00197CFF /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		045B582622117EC90044951E /* ChangePasswordBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBody.swift; sourceTree = "<group>"; };
 		047AA5C6222D1D6E00B9F0DA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				04C892D92209D72D00A1FBA6 /* Encodable+PerformDictionary.swift */,
 				04C892DB2209D72D00A1FBA6 /* HTTPURLResponse+InOkRange.swift */,
 				047AA5C8222D7FBA00B9F0DA /* URLRequest+RenewTokenInHeader.swift */,
+				04338779226DB37B009EE7D4 /* URLResponse+HTTPURLResponse.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				04C893062209D75600A1FBA6 /* Server.swift in Sources */,
 				04C893082209D75600A1FBA6 /* HTTPMethod.swift in Sources */,
 				04CA27AA2227E817006E3FE0 /* RefreshTokenEndpoint.swift in Sources */,
+				0433877A226DB37B009EE7D4 /* URLResponse+HTTPURLResponse.swift in Sources */,
 				043AD93A2237BF8B00197CFF /* Configuration.swift in Sources */,
 				045B582722117EC90044951E /* ChangePasswordBody.swift in Sources */,
 				04C893032209D75600A1FBA6 /* RequestCreatable.swift in Sources */,

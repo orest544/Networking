@@ -11,6 +11,7 @@ import Foundation
 enum TestDownloadEndpoint: Endpoint {
     
     case downloadSession
+    case uploadPhoto
     
     var server: Server {
         return .afServer
@@ -20,6 +21,9 @@ enum TestDownloadEndpoint: Endpoint {
         switch self {
         case .downloadSession:
             return "/downloads/hp/zt/QAydP6McSxtNUEfS.mpga"
+//            return "/downloas/h/zt/QAydP6McSxtNUEfS.mpg"
+        case .uploadPhoto:
+            return "/api/me/avatar"
         }
     }
     
@@ -29,12 +33,16 @@ enum TestDownloadEndpoint: Endpoint {
         switch self {
         case .downloadSession:
             return .GET
+        case .uploadPhoto:
+            return .POST
         }
     }
     
     var isAuthTokenRequired: Bool {
         switch self {
         case .downloadSession:
+            return true
+        case .uploadPhoto:
             return true
         }
     }

@@ -11,6 +11,8 @@ import Foundation
 protocol RequestCreatable: AnyObject {
     var endpoint: Endpoint { get set }
     var body: Encodable? { get set }
+    // test
+    var bodyData: Data? { get set }
     
     func addStandartHeadersFor(request: inout URLRequest)
     func addParametersFor(request: inout URLRequest, parameters: Encodable) throws
@@ -22,6 +24,10 @@ extension RequestCreatable {
     
     func addStandartHeadersFor(request: inout URLRequest) {
         request.addValue("application/json", forHTTPHeaderField: "content-type")
+        #warning("test")
+        // test
+        //let boundary = "Boundary-\(UUID().uuidString)"
+        //request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
     }
     
     // TODO: mb move this to URLRequest extension
@@ -65,7 +71,14 @@ extension RequestCreatable {
                 assert(false, "Can't add parameters for request")
             }
         }
-       
+        
+        #warning("test")
+        // test
+        
+        if let bodyData = bodyData {
+            urlRequest.httpBody = bodyData
+        }
+        
         // Additional request settings
         urlRequest.timeoutInterval = NetworkingSettings.requestTimeout
         

@@ -9,12 +9,12 @@
 import Foundation
 import BrightFutures
 
-class CurrencyService: RequestPerformable {
+struct CurrencyService: RequestPerformable {
     
     func getCurrencies() -> Future<Currencies, NetworkingError> {
 
         let request = MyRequest(endpoint: CurrencyEndpoint.getCurrencies)
         return performDataTask(with: request, logsEnable: true)
     }
-
+    
 }
