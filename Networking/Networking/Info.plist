@@ -4,6 +4,11 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>neeed</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>

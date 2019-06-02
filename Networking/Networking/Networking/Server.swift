@@ -86,6 +86,22 @@ struct GoogleAPIsServer: ServerInterface {
     }
 }
 
+struct NervyServer: ServerInterface {
+    var scheme: ServerScheme {
+        return .http
+    }
+    
+    var host: String {
+        return "ec2-35-156-108-213.eu-central-1.compute.amazonaws.com"
+    }
+}
+
+extension Server {
+    static var nervy: Server {
+        return .init(NervyServer())
+    }
+}
+
 //struct TestServer: ServerInterface {
 //    var scheme: ServerScheme {
 //        return .https

@@ -203,7 +203,7 @@ extension RequestPerformable {
                                                   data: Data) {
         optimizedPrint("\nFinal URL: \(request.url ?? URL(fileURLWithPath: ""))")
         optimizedPrint("Response code: \(response.statusCode) (\(ParsedType.self))" )
-        
+
         if let json = getJSONFrom(data: request.httpBody ?? Data()) {
             optimizedPrint("\nBODY JSON: \(json)")
         }

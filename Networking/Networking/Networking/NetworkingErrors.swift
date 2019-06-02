@@ -10,6 +10,7 @@ enum NetworkingError: Error {
     case defaultError
     case badData
     case responseError(String)
+    case cantParseData
     case canceled
     
     var description: String {
@@ -20,6 +21,8 @@ enum NetworkingError: Error {
             return "No data or response"
         case .responseError(let errorText):
             return errorText
+        case .cantParseData:
+            return "Model for data parsing wrong"
         case .canceled:
             return "canceled"
         }

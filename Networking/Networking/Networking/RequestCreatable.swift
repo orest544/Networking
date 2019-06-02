@@ -24,10 +24,6 @@ extension RequestCreatable {
     
     func addStandartHeadersFor(request: inout URLRequest) {
         request.addValue("application/json", forHTTPHeaderField: "content-type")
-        #warning("test")
-        // test
-        //let boundary = "Boundary-\(UUID().uuidString)"
-        //request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
     }
     
     // TODO: mb move this to URLRequest extension

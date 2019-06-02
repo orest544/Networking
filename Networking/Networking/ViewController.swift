@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
     let afWithQueriesService = AFWithQueriesService()
     let googlePlacesService = GoogleAutocompleteService()
     let downloadService: TestDownloadServiceInterface = TestDownloadService()
+    let nervyVideoService = NervyVideoService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -282,11 +285,13 @@ extension ViewController {
         }
         
         body.appendString(boundaryPrefix)
-        body.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"video\"; filename=\"\(filename)\"\r\n")
         body.appendString("Content-Type: \(mimeType)\r\n\r\n")
         body.append(data)
         body.appendString("\r\n")
         body.appendString("--".appending(boundary.appending("--")))
+        
+        
         
         return body as Data
     }
@@ -294,31 +299,113 @@ extension ViewController {
     @IBAction func uploadPhoto(_ sender: UIButton) {
         showActivityIndication()
 
-        let boundary = "Boundary-\(UUID().uuidString)"
+        let videoURL = Bundle.main.url(forResource: "NervyVideo", withExtension: "mp4")!
+        videoURL.dataRepresentation
+        
+//
+//        var urlRequest = URLRequest(url: URL(string: "http://ec2-35-156-108-213.eu-central-1.compute.amazonaws.com/api/v1/videos")!)
+//        urlRequest.httpMethod = "POST"
+//
+//        URLSession.shared.uploadTask(with: urlRequest, fromFile: videoURL) { (data, response, error) in
+//            print(data,response,error)
+//            let json = try! JSONSerialization.jsonObject(with: data!, options: [])
+//            print(json)
+//        }.resume()
+//
+        let videoData = try! Data(contentsOf: videoURL)
 
-        let photo = imageView.image!
-        let imageData = createBody(parameters: [:], boundary: boundary,
-                              data: photo.jpegData(compressionQuality: 0.7)!,
-                              mimeType: "image/jpeg",
-                              filename: "profile_photo")
+        var urlRequest = URLRequest(url: URL(string: "http://ec2-35-156-108-213.eu-central-1.compute.amazonaws.com/api/v1/videos")!)
+        urlRequest.httpMethod = "POST"
+//        try! urlRequest.setMultipartFormData(["video" : videoData.base64EncodedString()], encoding: .utf8)
+        let boundary = "Boundary-\(UUID().uuidString)"
+        let videoData2 = createBody(parameters: [:],
+                                    boundary: boundary,
+                                    data: videoData,
+                                    mimeType: "video/mp4",
+                                    filename: "NervyVideo.mp4")
+        urlRequest.httpBody = videoData2
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM1NTQ2NzA4ZDdlYWNmMWNhNDBkYWE1OWU3MGUzNmMwZjExYzk3Nzk2NDg5ODNlOGFjYTcyOTE0NTQwMGQyOGM2NTg1OWQ1NTBhMmE5NDc2In0.eyJhdWQiOiI0IiwiZXhwIjoxNTU5NTU3MTE1LCJqdGkiOiIzNTU0NjcwOGQ3ZWFjZjFjYTQwZGFhNTllNzBlMzZjMGYxMWM5Nzc5NjQ4OTgzZThhY2E3MjkxNDU0MDBkMjhjNjU4NTlkNTUwYTJhOTQ3NiIsImlhdCI6MTU1OTQ3MDcxNSwibmJmIjoxNTU5NDcwNzE1LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.10RJJuoVagoAhyxoIrOcA-MxNU7uuq4bK8PPBrdJJ1O42Rrc20Cj8fNKRvv6nhR51BO1rbegOR0Qb65U2zJQrUi1vqPFINk1WZZn9sa8P6anAgG8BaltKodu2cF_FSMldR7TcoDRGHb-KwLTPD41838K09ijZnP8Ucd0TBO4fH4D0YEirwgPEJUFd8gzXAkZ0neIereXEX5I8dB7g618ha-6Bjx31kC44I4u_SuRTzdU-2iGAF0_RVlnMNSOIG03Flu5LNbqzw_pPo2B1jU_aMSEeWsKMM9EVToKNTP_s_IY07mdRQ9MQsiBTtXYefZYXXU5e5g6dXo0bYej5S3kh3f0a-J5zdnelH168YduFK_M1yMhH-nFsE4BgegCyudBz6SZBmKyjHEFTND6OgM1T_qY6oX1sK_zHwM5dOFgywXOCBAL47N8Jz2uuT4Q-4Qx6Ww8GJCvK526wiHmf8eghBGPJp86L0ey0sOP8LPdQeXadA8a3xqrp1qi3-hvkiwJSF6gbrz7B06L1rrwCzZ1y_HucG8qQqBwNQfdugwER3OR6yAY39B2lCUXJqdY6Y5j_0c8nv4fmZ2evlCCgIgEqysUZT_zTaN14tqLT00rUZ8GHf6xmIG4qHGUCoKWxnU3o2FToNUI-H3vDXXaxw6crYu6fISkqgV87mpGyueBKgA", forHTTPHeaderField: "Authorization")
 //
+//        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+//            print(data,response,error)
+//            let json = try! JSONSerialization.jsonObject(with: data!, options: [])
+//            print(json)
+//        }.resume()
+        
+//        URLSession.shared.uploadTask(with: urlRequest, from: urlRequest.httpBody) { (data, response, error) in
+//            print(data,response,error)
+//            let json = try! JSONSerialization.jsonObject(with: data!, options: [])
+//            print(json)
+//        }.resume()
+//
+        //
+        
+        let upload = Upload(parsedType: EmptyResult.self)
+        upload.performUploadTask(with: urlRequest, progress: { (progress) in
+            DispatchQueue.main.async {
+                self.testProgressView.progress = progress
+            }
+        }, logsEnable: true)
+            .onSuccess { _ in
+                print("Success")
+            }.onFailure { error in
+                print("Failure")
+            }
+
+        
+
+//        let photo = imageView.image!
+//
+//        let videoDataString = String(data: videoData2.base64EncodedData(), encoding: .utf8)
+//        nervyVideoService.uploadNervyVideo(NervyVideoBody(video: videoData2))
 //        downloadService.uploadPhoto(uploadingProgress: { [weak self] (progress) in
-//
 //            }, photo: body)
 //            .onSuccess { _ in
 //                print("success uploading")
 //            }.onFailure { error in
 //                print(error.description)
 //            }
+
+//        let multipartData = MultipartFormData()
+//        multipartData.append(photo.jpegData(compressionQuality: 0.8)!,
+//                             withName: "avatar",
+//                             fileName: "profile_photo",
+//                             mimeType: "image/jpeg")
+//
+//        let body = UpdateAvatarBody(avatar: imageData)
+
         
-        let body = UpdateAvatarBody(avatar: photo.jpegData(compressionQuality: 0.7)!)
         
-        downloadService.uploadPhoto(body: body) { (progress) in
-            DispatchQueue.main.async {
-                self.testProgressView.progress = progress
-            }
-        }
-    
+        
+//        Alamofire.upload(multipartFormData: { (multipartData) in
+//            let videoData = try! Data(contentsOf: videoURL)
+//            multipartData.append(videoData, withName: "image", fileName: "NervyVideo", mimeType: "mp4")
+//        }, to: "http://ec2-35-156-108-213.eu-central-1.compute.amazonaws.com/api/v1/account/avatar",
+//           method: .post,
+//           headers: nil) { result in
+//            switch result {
+//            case .success(request: let request, streamingFromDisk: _, streamFileURL: _):
+//                request.responseJSON(completionHandler: { (response) in
+//                    response.result.withValue({ JSON in
+//                        print(JSON)
+//                    }).withError({ error in
+//                        print(error)
+//                    })
+//                })
+//            case .failure(_):
+//                print("failure")
+//            }
+//        }
+        
+        
+//        downloadService.uploadPhoto(body: body) { (progress) in
+//            DispatchQueue.main.async {
+//                self.testProgressView.progress = progress
+//            }
+//        }
+//
     }
     
 }
@@ -330,4 +417,70 @@ extension NSMutableData {
         let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
         append(data!)
     }
+}
+
+
+extension URLRequest {
+    
+    /**
+     Configures the URL request for `multipart/form-data`. The request's `httpBody` is set, and a value is set for the HTTP header field `Content-Type`.
+     
+     - Parameter parameters: The form data to set.
+     - Parameter encoding: The encoding to use for the keys and values.
+     
+     - Throws: `MultipartFormDataEncodingError` if any keys or values in `parameters` are not entirely in `encoding`.
+     
+     - Note: The default `httpMethod` is `GET`, and `GET` requests do not typically have a response body. Remember to set the `httpMethod` to e.g. `POST` before sending the request.
+     - Seealso: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#multipart-form-data
+     */
+    public mutating func setMultipartFormData(_ parameters: [String: String], encoding: String.Encoding) throws {
+        
+        let makeRandom = { UInt32.random(in: (.min)...(.max)) }
+        let boundary = String(format: "------------------------%08X%08X", makeRandom(), makeRandom())
+        
+        let contentType: String = try {
+            guard let charset = CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(encoding.rawValue)) else {
+                throw MultipartFormDataEncodingError.characterSetName
+            }
+            return "multipart/form-data; charset=\(charset); boundary=\(boundary)"
+            }()
+        addValue(contentType, forHTTPHeaderField: "Content-Type")
+        
+        httpBody = try {
+            var body = Data()
+            
+            for (rawName, rawValue) in parameters {
+                if !body.isEmpty {
+                    body.append("\r\n".data(using: .utf8)!)
+                }
+                
+                body.append("--\(boundary)\r\n".data(using: .utf8)!)
+                
+                guard
+                    rawName.canBeConverted(to: encoding),
+                    let disposition = "Content-Disposition: form-data; name=\"\(rawName)\"\r\n".data(using: encoding) else {
+                        throw MultipartFormDataEncodingError.name(rawName)
+                }
+                body.append(disposition)
+                
+                body.append("\r\n".data(using: .utf8)!)
+                
+                guard let value = rawValue.data(using: encoding) else {
+                    throw MultipartFormDataEncodingError.value(rawValue, name: rawName)
+                }
+                
+                body.append(value)
+            }
+            
+            body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+            
+            return body
+            }()
+    }
+}
+
+public enum MultipartFormDataEncodingError: Error {
+    case characterSetName
+    case name(String)
+    case value(String, name: String)
 }
