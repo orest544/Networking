@@ -111,7 +111,7 @@ extension RequestPerformable {
             }
             
             /// Validate status code
-            switch response.validateStatusCode() {
+            switch response.validateStatusCode(consideringAuthToken: request.endpoint.isAuthTokenRequired) {
             case .good: break
             case .refresh:
                 optimizedPrint("making refresh token")

@@ -8,15 +8,24 @@
 
 import Foundation
 
-struct NervyVideoBody: Encodable {
-    let video: Data
-}
-
-struct NervyVideoService: RequestPerformable {
-    func uploadNervyVideo(_ videoBody: NervyVideoBody) -> UploadTaskFuture {
-        let endpoint = NervyVideoEndpoint.uploadVideo
-        let request = MyRequest(endpoint: endpoint, body: videoBody)
+struct NervyVideoService {
+    func uploadNervyVideo(videoURL: URL, progress: ProgressHandler? = nil) -> UploadTaskFuture {
         
-        return performDataTask(with: request, logsEnable: true)
+        let videoData = try! Data(contentsOf: videoURL)
+        let video = Media(key: "video",
+                          data: videoData,
+                          mimeType: .video,
+                          filename: "NervyVideo")
+        let multipartData = MultipartData(parameters: nil,
+                                          media: [video])
+        
+        let request = MultipartRequest(endpoint: NervyVideoEndpoint.uploadVideo,
+                                       multipartData: multipartData)
+        
+        let uploader = Upload(parsedType: EmptyResult.self)
+        
+        return uploader.performUploadTask(with: request,
+                                          progress: progress,
+                                          logsEnable: true)
     }
 }

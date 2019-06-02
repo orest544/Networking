@@ -13,6 +13,7 @@ class Upload<ParsedType: Decodable>: NSObject, BaseDelegateRequest, URLSessionDa
     
     // TODO: Solve the problem with URLSession delegate!
     
+    private var request: MultipartRequest!
     private var promise: Promise<ParsedType, NetworkingError>
     //    private var request: RequestCreatable!
     //    private var fileURL = FileManager.default.temporaryDirectory
@@ -38,15 +39,16 @@ class Upload<ParsedType: Decodable>: NSObject, BaseDelegateRequest, URLSessionDa
         print("upload deinited")
     }
     
-    func performUploadTask(with request: URLRequest,
+    func performUploadTask(with request: MultipartRequest,
                            progress: ProgressHandler? = nil,
                            logsEnable: Bool = false) -> Future<ParsedType, NetworkingError> {
         //        promise = Promise<ParsedType, NetworkingError>()
+        self.request = request
         progressHandler = progress
         self.logsEnable = logsEnable
         
-        var urlRequest = request//request.asURLRequest()
-        RequestCreatable
+        var urlRequest = request.asURLRequest()
+        
         urlRequest.timeoutInterval = NetworkingSettings.downloadUploadRequestTimeout
         
         let task = sessionWithDelegate.dataTask(with: urlRequest)
@@ -107,7 +109,7 @@ class Upload<ParsedType: Decodable>: NSObject, BaseDelegateRequest, URLSessionDa
         }
         
         /// Validate status code
-        switch response.validateStatusCode() {
+        switch response.validateStatusCode(consideringAuthToken: request.endpoint.isAuthTokenRequired) {
         case .good: break
         case .refresh:
             optimizedPrint("making refresh token")

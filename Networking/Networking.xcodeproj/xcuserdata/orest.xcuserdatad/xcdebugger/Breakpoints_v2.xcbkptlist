@@ -10,13 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Networking/Networking/DownloadTask.swift"
-            timestampString = "577712239.390964"
+            timestampString = "581179923.504756"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "urlSession(_:dataTask:didReceive:completionHandler:)"
-            landmarkType = "7">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,13 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Networking/Networking/DownloadTask.swift"
-            timestampString = "577712239.391036"
+            timestampString = "581179923.504824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "urlSession(_:task:didCompleteWithError:)"
-            landmarkType = "7">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,13 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Networking/Networking/DownloadTask.swift"
-            timestampString = "577712239.3910919"
+            timestampString = "581179923.5048651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "urlSession(_:task:didCompleteWithError:)"
-            landmarkType = "7">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,13 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Networking/Networking/DownloadTask.swift"
-            timestampString = "577712239.3911459"
+            timestampString = "581179923.504904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "performUploadTask(with:data:progress:logsEnable:)"
-            landmarkType = "7">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,13 +66,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Networking/Networking/DownloadTask.swift"
-            timestampString = "577712239.391196"
+            timestampString = "581179923.504941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "urlSession(_:task:didCompleteWithError:)"
-            landmarkType = "7">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,13 +80,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Networking/Networking/DownloadTask.swift"
-            timestampString = "577712239.391247"
+            timestampString = "581179923.504977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "urlSession(_:dataTask:didReceive:)"
-            landmarkType = "7">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

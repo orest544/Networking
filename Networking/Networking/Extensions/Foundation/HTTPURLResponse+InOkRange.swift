@@ -26,12 +26,17 @@ extension HTTPURLResponse {
         return 200...299 ~= statusCode
     }
     
-    func validateStatusCode() -> StatusCodeResult {
+    func validateStatusCode(consideringAuthToken: Bool) -> StatusCodeResult {
         switch statusCode {
         case StatusCodeValue.goodRange:
             return .good
         case StatusCodeValue.refreshCode:
-            return .refresh
+            // If auth token is not required, than recognize refresh status code like bad code
+            if consideringAuthToken {
+                return .refresh
+            } else {
+                fallthrough
+            }
         default:
             return .bad
         }

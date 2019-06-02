@@ -93,7 +93,7 @@ class Download: NSObject, URLSessionDownloadDelegate, BaseDelegateRequest {
         }
         
         /// Validate status code
-        switch response.validateStatusCode() {
+        switch response.validateStatusCode(consideringAuthToken: false) {
         case .good: break
         case .refresh:
             optimizedPrint("making refresh token")

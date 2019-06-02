@@ -8,7 +8,6 @@
 
 import UIKit
 import AVKit
-import Alamofire
 
 class ViewController: UIViewController {
     
@@ -269,39 +268,47 @@ extension ViewController {
         }
     }
     
-    func createBody(parameters: [String: String],
-                    boundary: String,
-                    data: Data,
-                    mimeType: String,
-                    filename: String) -> Data {
-        let body = NSMutableData()
-        
-        let boundaryPrefix = "--\(boundary)\r\n"
-        
-        for (key, value) in parameters {
-            body.appendString(boundaryPrefix)
-            body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-            body.appendString("\(value)\r\n")
-        }
-        
-        body.appendString(boundaryPrefix)
-        body.appendString("Content-Disposition: form-data; name=\"video\"; filename=\"\(filename)\"\r\n")
-        body.appendString("Content-Type: \(mimeType)\r\n\r\n")
-        body.append(data)
-        body.appendString("\r\n")
-        body.appendString("--".appending(boundary.appending("--")))
-        
-        
-        
-        return body as Data
-    }
-    
+//    func createBody(parameters: [String: String],
+//                    boundary: String,
+//                    data: Data,
+//                    mimeType: String,
+//                    filename: String) -> Data {
+//        let body = NSMutableData()
+//
+//        let boundaryPrefix = "--\(boundary)\r\n"
+//
+//        for (key, value) in parameters {
+//            body.appendString(boundaryPrefix)
+//            body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+//            body.appendString("\(value)\r\n")
+//        }
+//
+//        body.appendString(boundaryPrefix)
+//        body.appendString("Content-Disposition: form-data; name=\"video\"; filename=\"\(filename)\"\r\n")
+//        body.appendString("Content-Type: \(mimeType)\r\n\r\n")
+//        body.append(data)
+//        body.appendString("\r\n")
+//        body.appendString("--".appending(boundary.appending("--")))
+//
+//
+//
+//        return body as Data
+//    }
+//
     @IBAction func uploadPhoto(_ sender: UIButton) {
         showActivityIndication()
 
         let videoURL = Bundle.main.url(forResource: "NervyVideo", withExtension: "mp4")!
-        videoURL.dataRepresentation
         
+        nervyVideoService.uploadNervyVideo(videoURL: videoURL) { value in
+            DispatchQueue.main.async {
+                self.testProgressView.progress = value
+            }
+        }.onSuccess { _ in
+            print("success")
+        }.onFailure { error in
+            print(error.description)
+        }
 //
 //        var urlRequest = URLRequest(url: URL(string: "http://ec2-35-156-108-213.eu-central-1.compute.amazonaws.com/api/v1/videos")!)
 //        urlRequest.httpMethod = "POST"
@@ -311,23 +318,23 @@ extension ViewController {
 //            let json = try! JSONSerialization.jsonObject(with: data!, options: [])
 //            print(json)
 //        }.resume()
+////
+//        let videoData = try! Data(contentsOf: videoURL)
 //
-        let videoData = try! Data(contentsOf: videoURL)
-
-        var urlRequest = URLRequest(url: URL(string: "http://ec2-35-156-108-213.eu-central-1.compute.amazonaws.com/api/v1/videos")!)
-        urlRequest.httpMethod = "POST"
-//        try! urlRequest.setMultipartFormData(["video" : videoData.base64EncodedString()], encoding: .utf8)
-        let boundary = "Boundary-\(UUID().uuidString)"
-        let videoData2 = createBody(parameters: [:],
-                                    boundary: boundary,
-                                    data: videoData,
-                                    mimeType: "video/mp4",
-                                    filename: "NervyVideo.mp4")
-        urlRequest.httpBody = videoData2
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.setValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM1NTQ2NzA4ZDdlYWNmMWNhNDBkYWE1OWU3MGUzNmMwZjExYzk3Nzk2NDg5ODNlOGFjYTcyOTE0NTQwMGQyOGM2NTg1OWQ1NTBhMmE5NDc2In0.eyJhdWQiOiI0IiwiZXhwIjoxNTU5NTU3MTE1LCJqdGkiOiIzNTU0NjcwOGQ3ZWFjZjFjYTQwZGFhNTllNzBlMzZjMGYxMWM5Nzc5NjQ4OTgzZThhY2E3MjkxNDU0MDBkMjhjNjU4NTlkNTUwYTJhOTQ3NiIsImlhdCI6MTU1OTQ3MDcxNSwibmJmIjoxNTU5NDcwNzE1LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.10RJJuoVagoAhyxoIrOcA-MxNU7uuq4bK8PPBrdJJ1O42Rrc20Cj8fNKRvv6nhR51BO1rbegOR0Qb65U2zJQrUi1vqPFINk1WZZn9sa8P6anAgG8BaltKodu2cF_FSMldR7TcoDRGHb-KwLTPD41838K09ijZnP8Ucd0TBO4fH4D0YEirwgPEJUFd8gzXAkZ0neIereXEX5I8dB7g618ha-6Bjx31kC44I4u_SuRTzdU-2iGAF0_RVlnMNSOIG03Flu5LNbqzw_pPo2B1jU_aMSEeWsKMM9EVToKNTP_s_IY07mdRQ9MQsiBTtXYefZYXXU5e5g6dXo0bYej5S3kh3f0a-J5zdnelH168YduFK_M1yMhH-nFsE4BgegCyudBz6SZBmKyjHEFTND6OgM1T_qY6oX1sK_zHwM5dOFgywXOCBAL47N8Jz2uuT4Q-4Qx6Ww8GJCvK526wiHmf8eghBGPJp86L0ey0sOP8LPdQeXadA8a3xqrp1qi3-hvkiwJSF6gbrz7B06L1rrwCzZ1y_HucG8qQqBwNQfdugwER3OR6yAY39B2lCUXJqdY6Y5j_0c8nv4fmZ2evlCCgIgEqysUZT_zTaN14tqLT00rUZ8GHf6xmIG4qHGUCoKWxnU3o2FToNUI-H3vDXXaxw6crYu6fISkqgV87mpGyueBKgA", forHTTPHeaderField: "Authorization")
+//        var urlRequest = URLRequest(url: URL(string: "http://ec2-35-156-108-213.eu-central-1.compute.amazonaws.com/api/v1/videos")!)
+//        urlRequest.httpMethod = "POST"
 //
+//        let boundary = "Boundary-\(UUID().uuidString)"
+//        let videoData2 = createBody(parameters: [:],
+//                                    boundary: boundary,
+//                                    data: videoData,
+//                                    mimeType: "video/mp4",
+//                                    filename: "NervyVideo.mp4")
+//        urlRequest.httpBody = videoData2
+//        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+//        urlRequest.setValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM1NTQ2NzA4ZDdlYWNmMWNhNDBkYWE1OWU3MGUzNmMwZjExYzk3Nzk2NDg5ODNlOGFjYTcyOTE0NTQwMGQyOGM2NTg1OWQ1NTBhMmE5NDc2In0.eyJhdWQiOiI0IiwiZXhwIjoxNTU5NTU3MTE1LCJqdGkiOiIzNTU0NjcwOGQ3ZWFjZjFjYTQwZGFhNTllNzBlMzZjMGYxMWM5Nzc5NjQ4OTgzZThhY2E3MjkxNDU0MDBkMjhjNjU4NTlkNTUwYTJhOTQ3NiIsImlhdCI6MTU1OTQ3MDcxNSwibmJmIjoxNTU5NDcwNzE1LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.10RJJuoVagoAhyxoIrOcA-MxNU7uuq4bK8PPBrdJJ1O42Rrc20Cj8fNKRvv6nhR51BO1rbegOR0Qb65U2zJQrUi1vqPFINk1WZZn9sa8P6anAgG8BaltKodu2cF_FSMldR7TcoDRGHb-KwLTPD41838K09ijZnP8Ucd0TBO4fH4D0YEirwgPEJUFd8gzXAkZ0neIereXEX5I8dB7g618ha-6Bjx31kC44I4u_SuRTzdU-2iGAF0_RVlnMNSOIG03Flu5LNbqzw_pPo2B1jU_aMSEeWsKMM9EVToKNTP_s_IY07mdRQ9MQsiBTtXYefZYXXU5e5g6dXo0bYej5S3kh3f0a-J5zdnelH168YduFK_M1yMhH-nFsE4BgegCyudBz6SZBmKyjHEFTND6OgM1T_qY6oX1sK_zHwM5dOFgywXOCBAL47N8Jz2uuT4Q-4Qx6Ww8GJCvK526wiHmf8eghBGPJp86L0ey0sOP8LPdQeXadA8a3xqrp1qi3-hvkiwJSF6gbrz7B06L1rrwCzZ1y_HucG8qQqBwNQfdugwER3OR6yAY39B2lCUXJqdY6Y5j_0c8nv4fmZ2evlCCgIgEqysUZT_zTaN14tqLT00rUZ8GHf6xmIG4qHGUCoKWxnU3o2FToNUI-H3vDXXaxw6crYu6fISkqgV87mpGyueBKgA", forHTTPHeaderField: "Authorization")
+////
 //        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
 //            print(data,response,error)
 //            let json = try! JSONSerialization.jsonObject(with: data!, options: [])
@@ -341,18 +348,18 @@ extension ViewController {
 //        }.resume()
 //
         //
-        
-        let upload = Upload(parsedType: EmptyResult.self)
-        upload.performUploadTask(with: urlRequest, progress: { (progress) in
-            DispatchQueue.main.async {
-                self.testProgressView.progress = progress
-            }
-        }, logsEnable: true)
-            .onSuccess { _ in
-                print("Success")
-            }.onFailure { error in
-                print("Failure")
-            }
+//
+//        let upload = Upload(parsedType: EmptyResult.self)
+//        upload.performUploadTask(with: urlRequest, progress: { (progress) in
+//            DispatchQueue.main.async {
+//                self.testProgressView.progress = progress
+//            }
+//        }, logsEnable: true)
+//            .onSuccess { _ in
+//                print("Success")
+//            }.onFailure { error in
+//                print("Failure")
+//            }
 
         
 
@@ -409,16 +416,6 @@ extension ViewController {
     }
     
 }
-
-
-
-extension NSMutableData {
-    func appendString(_ string: String) {
-        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        append(data!)
-    }
-}
-
 
 extension URLRequest {
     
