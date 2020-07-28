@@ -1,2 +1,2 @@
 # Networking
-Networking with blackjack and hookers
+Convenient URLSession wrapper
